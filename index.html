@@ -522,9 +522,9 @@ const MES_L = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto'
 const META = Object.fromEntries(D.meta.map(m => [m.name, m]));
 const ORDER = D.meta.map(m => m.name);
 const FC = f => META[f].color;
-let saved = null; try { saved = JSON.parse(localStorage.getItem('jimbo-firms') || 'null'); } catch(e) {}
-let savedRisk = null; try { savedRisk = localStorage.getItem('jimbo-risk'); } catch(e) {}
-let savedExit = null; try { savedExit = localStorage.getItem('jimbo-exit'); } catch(e) {}
+let saved = null; try { saved = JSON.parse(localStorage.getItem('jimbo6-firms') || 'null'); } catch(e) {}
+let savedRisk = null; try { savedRisk = localStorage.getItem('jimbo6-risk'); } catch(e) {}
+let savedExit = null; try { savedExit = localStorage.getItem('jimbo6-exit'); } catch(e) {}
 const st = {exit:D.exits.some(e => e[0] === savedExit) ? savedExit : D.exit_default, sel:new Set((saved || D.preset_default).filter(f => META[f])), risk:D.risks.includes(savedRisk) ? savedRisk : D.risk_default, firm:'Todas', per:'mes', det:false, open:new Set(), focus:null};
 const FD = f => D.firms[f].by[`${st.exit}|${st.risk}`];
 if (!st.sel.size) D.preset_default.forEach(f => st.sel.add(f));
@@ -615,9 +615,9 @@ function renderRiskSeg(){ $$('.riskSeg').forEach(el => el.innerHTML = D.risks.ma
 document.addEventListener('click', e => { const b = e.target.closest('.riskSeg button'); if (!b) return; e.stopPropagation(); setRisk(b.dataset.v); });
 function renderExitSeg(){ $$('.exitSeg').forEach(el => el.innerHTML = D.exits.map(([v, l]) => `<button type="button" data-v="${v}" aria-pressed="${v===st.exit}">${esc(l)}</button>`).join('')); }
 document.addEventListener('click', e => { const b = e.target.closest('.exitSeg button'); if (!b) return; e.stopPropagation(); setExit(b.dataset.v); });
-function setExit(x){ st.exit = x; try { localStorage.setItem('jimbo-exit', x); } catch(e) {} SOLO = Object.fromEntries(ORDER.map(f => [f, agg([f])])); setSel([...st.sel]); }
-function setRisk(r){ st.risk = r; try { localStorage.setItem('jimbo-risk', r); } catch(e) {} SOLO = Object.fromEntries(ORDER.map(f => [f, agg([f])])); setSel([...st.sel]); }
-function setSel(fs){ st.sel = new Set(fs); try { localStorage.setItem('jimbo-firms', JSON.stringify([...st.sel])); } catch(e) {}
+function setExit(x){ st.exit = x; try { localStorage.setItem('jimbo6-exit', x); } catch(e) {} SOLO = Object.fromEntries(ORDER.map(f => [f, agg([f])])); setSel([...st.sel]); }
+function setRisk(r){ st.risk = r; try { localStorage.setItem('jimbo6-risk', r); } catch(e) {} SOLO = Object.fromEntries(ORDER.map(f => [f, agg([f])])); setSel([...st.sel]); }
+function setSel(fs){ st.sel = new Set(fs); try { localStorage.setItem('jimbo6-firms', JSON.stringify([...st.sel])); } catch(e) {}
   st.open.clear(); st.focus = null; if (st.firm !== 'Todas' && !st.sel.has(st.firm)) st.firm = 'Todas';
   S = agg(selList()); renderAll(); if (!pickPanel.hidden) renderPick(); }
 
