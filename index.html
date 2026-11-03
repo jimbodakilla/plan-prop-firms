@@ -388,7 +388,7 @@ footer .brand{font-size:15px;color:var(--ink)}
     <div class="warnbar"><span aria-hidden="true">⚠</span><p id="cmp2026"></p></div>
     <div class="using usingLine"></div>
     <div class="controls">
-      <div class="ctl"><span>Firma</span><div class="seg" id="segFirm" role="group" aria-label="Firma"></div></div>
+      <div class="ctl"><span>Firmas (una, varias o todas)</span><div class="seg" id="segFirm" role="group" aria-label="Firmas a mostrar"></div></div>
       <div class="ctl"><span>Ver por</span><div class="seg" id="segPer" role="group" aria-label="Periodo">
         <button type="button" data-v="mes" aria-pressed="true">Mes</button><button type="button" data-v="sem" aria-pressed="false">Semana</button></div></div>
     </div>
@@ -525,7 +525,7 @@ const FC = f => META[f].color;
 let saved = null; try { saved = JSON.parse(localStorage.getItem('jimbo6-firms') || 'null'); } catch(e) {}
 let savedRisk = null; try { savedRisk = localStorage.getItem('jimbo6-risk'); } catch(e) {}
 let savedExit = null; try { savedExit = localStorage.getItem('jimbo6-exit'); } catch(e) {}
-const st = {exit:D.exits.some(e => e[0] === savedExit) ? savedExit : D.exit_default, sel:new Set((saved || D.preset_default).filter(f => META[f])), risk:D.risks.includes(savedRisk) ? savedRisk : D.risk_default, firm:'Todas', per:'mes', det:false, open:new Set(), focus:null};
+const st = {exit:D.exits.some(e => e[0] === savedExit) ? savedExit : D.exit_default, sel:new Set((saved || D.preset_default).filter(f => META[f])), risk:D.risks.includes(savedRisk) ? savedRisk : D.risk_default, f26:new Set(), per:'mes', det:false, open:new Set(), focus:null};
 const FD = f => D.firms[f].by[`${st.exit}|${st.risk}`];
 if (!st.sel.size) D.preset_default.forEach(f => st.sel.add(f));
 
@@ -618,7 +618,7 @@ document.addEventListener('click', e => { const b = e.target.closest('.exitSeg b
 function setExit(x){ st.exit = x; try { localStorage.setItem('jimbo6-exit', x); } catch(e) {} SOLO = Object.fromEntries(ORDER.map(f => [f, agg([f])])); setSel([...st.sel]); }
 function setRisk(r){ st.risk = r; try { localStorage.setItem('jimbo6-risk', r); } catch(e) {} SOLO = Object.fromEntries(ORDER.map(f => [f, agg([f])])); setSel([...st.sel]); }
 function setSel(fs){ st.sel = new Set(fs); try { localStorage.setItem('jimbo6-firms', JSON.stringify([...st.sel])); } catch(e) {}
-  st.open.clear(); st.focus = null; if (st.firm !== 'Todas' && !st.sel.has(st.firm)) st.firm = 'Todas';
+  st.open.clear(); st.focus = null; st.f26 = new Set([...st.f26].filter(f => st.sel.has(f)));
   S = agg(selList()); renderAll(); if (!pickPanel.hidden) renderPick(); }
 
 /* ---------- info popovers ---------- */
@@ -643,7 +643,9 @@ function tipFor(box){ let t = box.querySelector('.tip'); if (!t){ t = document.c
 /* ---------- controls ---------- */
 function setPer(v){ st.per = v; st.open.clear(); st.focus = null; $('#segPer').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x.dataset.v === v)); render26(); }
 $('#segPer').addEventListener('click', e => { const b = e.target.closest('button'); if (b) setPer(b.dataset.v); });
-$('#segFirm').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; st.firm = b.dataset.v; st.open.clear(); st.focus = null; render26(); });
+$('#segFirm').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; const v = b.dataset.v;
+  if (v === 'Todas') st.f26.clear(); else { st.f26.has(v) ? st.f26.delete(v) : st.f26.add(v); if (st.f26.size === S.fs.length) st.f26.clear(); }
+  st.open.clear(); st.focus = null; render26(); });
 $('#detBtn').addEventListener('click', () => { st.det = !st.det; const b = $('#detBtn'); b.setAttribute('aria-pressed', st.det); b.textContent = st.det ? 'Ocultar detalle técnico' : 'Ver detalle técnico'; $('#tbl26wrap').classList.toggle('show-det', st.det); });
 
 /* ---------- hero ---------- */
@@ -757,20 +759,24 @@ $('#rankTable').addEventListener('click', e => { if (e.target.closest('.info')) 
 /* ---------- 2026 ---------- */
 function weekInfo(p){ const s = new Date(p + 'T12:00:00Z'), mo = new Date(s), fr = new Date(s); mo.setUTCDate(s.getUTCDate()+2); fr.setUTCDate(s.getUTCDate()+6);
   return {fri:fr, txt:`${mo.getUTCDate()} ${MES[mo.getUTCMonth()]} – ${fr.getUTCDate()} ${MES[fr.getUTCMonth()]}`}; }
-const src = key => st.firm === 'Todas' ? S.periods[key] : FD(st.firm).periods[key];
+const f26 = () => st.f26.size ? S.fs.filter(f => st.f26.has(f)) : S.fs;
+const lab26 = () => !st.f26.size ? 'Todas las firmas elegidas' : f26().length === 1 ? META[f26()[0]].title : f26().map(f => META[f].title.split(' ')[0]).join(' + ');
+function mergeP(fs, key){ const M = {}; fs.forEach(f => FD(f).periods[key].forEach(r => { const o = M[r.p] || (M[r.p] = {p:r.p, d0:r.d0, d1:r.d1, wk:r.wk}); FIELDS.forEach(c => o[c] = (o[c] || 0) + (r[c] || 0)); }));
+  return Object.values(M).sort((a, b) => a.p < b.p ? -1 : 1); }
+const src = key => st.f26.size ? mergeP(f26(), key) : S.periods[key];
 function weekRows(){ return src('sem').map(r => { const a = new Date(r.d0 + 'T12:00:00Z'), b = new Date(r.d1 + 'T12:00:00Z'), mi = +r.p.slice(5,7) - 1;
   const txt = a.getUTCMonth() === b.getUTCMonth() ? `${a.getUTCDate()}–${b.getUTCDate()} ${MES[mi]}` : `${a.getUTCDate()} ${MES[a.getUTCMonth()]} – ${b.getUTCDate()} ${MES[b.getUTCMonth()]}`;
   return {...r, lab:`Sem ${r.wk} · ${txt}`, mi, key:'w'+r.p}; }); }
 function monthRows(){ return src('mes').map(r => { const mi = +r.p.slice(5,7) - 1; return {...r, lab:MES_L[mi], mi, key:'m'+r.p}; }); }
 function render26(){
   const fs = S.fs;
-  $('#segFirm').innerHTML = ['Todas', ...fs].map(f => `<button type="button" data-v="${esc(f)}" aria-pressed="${f===st.firm}">${f==='Todas'?'Todas':`<span class="sw" style="background:${FC(f)}"></span>${esc(META[f].title)}`}</button>`).join('');
+  $('#segFirm').innerHTML = ['Todas', ...fs].map(f => `<button type="button" data-v="${esc(f)}" aria-pressed="${f==='Todas' ? !st.f26.size : st.f26.has(f)}">${f==='Todas'?'Todas':`<span class="sw" style="background:${FC(f)}"></span>${esc(META[f].title)}`}</button>`).join('');
   const rows = st.per === 'mes' ? monthRows() : weekRows(), last = rows[rows.length-1] || {};
   const cost = sum(rows,'costo'), pay = sum(rows,'payouts');
-  const byFirm = fs.slice(0, 6).map(f => `<span style="display:inline-flex;align-items:center;gap:6px"><span class="sw" style="background:${FC(f)}"></span>${esc(META[f].title)}: ${k0(sum(FD(f).periods.mes,'payouts'))}</span>`).join('<br>') + (fs.length > 6 ? '<br>…' : '');
+  const byFirm = f26().slice(0, 6).map(f => `<span style="display:inline-flex;align-items:center;gap:6px"><span class="sw" style="background:${FC(f)}"></span>${esc(META[f].title)}: ${k0(sum(FD(f).periods.mes,'payouts'))}</span>`).join('<br>') + (f26().length > 6 ? '<br>…' : '');
   const T = [
-    {k:'Neto (cobros − evaluaciones)', v:k(pay - cost), s:(st.firm === 'Todas' ? 'Todas las firmas elegidas' : META[st.firm].title) + ' · ene – 29 oct'},
-    {k:'Cobros recibidos', v:k0(pay), s:st.firm === 'Todas' ? byFirm : META[st.firm].title},
+    {k:'Neto (cobros − evaluaciones)', v:k(pay - cost), s:lab26() + ' · ene – 29 oct'},
+    {k:'Cobros recibidos', v:k0(pay), s:f26().length > 1 ? byFirm : lab26()},
     {k:'Pagado a las firmas', v:k0(cost), s:`${sum(rows,'evals')} cargos (evaluaciones, renovaciones mensuales y activaciones) · ${sum(rows,'pasaron')} aprobadas`},
     {k:'Fondeadas activas al 29-oct', v:(last.vivas||0).toFixed(0), s:`Ganancia aún sin retirar: ${k0(last.dentro||0)}`},
   ];
@@ -785,7 +791,7 @@ function renderChart26(rows){
   const t2 = niceTicks(Math.min(0, ...cum), Math.max(0, ...cum), 3), b0 = Math.min(t2[0], ...cum, 0), b1 = Math.max(t2[t2.length-1], ...cum, 0);
   const n = rows.length, bw = (W - m.l - m.r) / n, x = i => m.l + bw*i + bw/2;
   const y1 = v => m.t + (a1 - v) * h1 / (a1 - a0 || 1), top2 = m.t + h1 + gap, y2 = v => top2 + (b1 - v) * h2 / (b1 - b0 || 1);
-  let g = `<text x="${m.l}" y="${m.t-10}" font-size="13" style="font-weight:700;fill:var(--ink)">Neto por ${wk?'semana':'mes'}${st.firm!=='Todas'?' · '+esc(META[st.firm].title):''}</text>`;
+  let g = `<text x="${m.l}" y="${m.t-10}" font-size="13" style="font-weight:700;fill:var(--ink)">Neto por ${wk?'semana':'mes'}${st.f26.size?' · '+esc(lab26()):''}</text>`;
   t1.forEach(t => g += `<line x1="${m.l}" x2="${W-m.r}" y1="${y1(t)}" y2="${y1(t)}" stroke="var(--line)"/><text x="${m.l-8}" y="${y1(t)+4}" font-size="12" text-anchor="end">${t===0?'$0':k(t,false)}</text>`);
   rows.forEach((r, i) => { const v = r.neto, yy = y1(Math.max(v,0)), hh = Math.max(Math.abs(y1(v) - y1(0)), Math.round(v) ? 2 : 0), w = Math.max(3, bw*(wk ? .7 : .58)), foc = st.focus === r.key;
     g += `<g class="bar" data-key="${r.key}" role="button" tabindex="0" aria-label="${esc(r.lab)}: ${k(v)}"><rect x="${x(i)-bw/2}" y="${m.t}" width="${bw}" height="${h1}" fill="rgba(255,255,255,0.001)"/>
@@ -843,7 +849,7 @@ function renderTable26(){
   else rows.forEach(r => { const open = st.open.has(r.key);
     body += tr(r, 'clickable', `<button type="button" class="exp" data-key="${r.key}" aria-expanded="${open}" aria-label="${open?'Ocultar':'Ver'} semanas de ${r.lab}">›</button>${esc(r.lab)}`);
     if (open) weeks.filter(w => w.mi === r.mi).forEach(w => body += tr({...w, key:null, cum:null}, 'wkrow')); });
-  $('#tbl26').innerHTML = `<caption>${st.firm === 'Todas' ? 'Todas las firmas elegidas' : esc(META[st.firm].title)}</caption>${th}<tbody>${body}${tr(aggR(rows, 'Total ene – 29 oct'),'tot')}</tbody>`;
+  $('#tbl26').innerHTML = `<caption>${esc(lab26())}</caption>${th}<tbody>${body}${tr(aggR(rows, 'Total ene – 29 oct'),'tot')}</tbody>`;
   $('#tbl26wrap').classList.toggle('show-det', st.det);
   $('#tblNote').textContent = 'Semanas de lunes a viernes; una semana que cruza de mes se parte en dos, así las semanas de cada mes suman exacto el total del mes. Neto = cobros recibidos − evaluaciones compradas. Fondeadas activas y ganancia sin retirar del total son las del 29-oct. En el celular se ocultan algunas columnas.';
 }
