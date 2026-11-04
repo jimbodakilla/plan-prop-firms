@@ -95,7 +95,7 @@ footer{color:var(--dim);font-size:13px;margin-top:34px}
     <div><b>Congelada (la del plan)</b>Primera señal del día. Stop de 30 puntos y objetivo de 50. Arriesgas hasta $1,000 por trade y normalmente pasas con 2 o 3 trades ganadores.</div>
     <div><b>Santiago</b>Primera señal del día. Stop de 30 puntos y objetivo de 22.5 (ganas 0.75 de lo que arriesgas). Arriesgas hasta $2,000 en un solo trade: suele pasar o quemarse en pocos días.</div>
     <div><b>La señal en estos meses</b><span id="sig"></span></div>
-    <div><b>Qué es cada cosa</b>Compradas: evaluaciones nuevas. Pasó: llegó a la meta y se vuelve fondeada. Se quemó: perdió el margen. Cobrado: lo que te pagaron las fondeadas (ya con el 90%).</div>
+    <div><b>Qué es cada cosa</b>Compradas: evaluaciones nuevas. Pasó: llegó a la meta y se vuelve fondeada. Se quemó: perdió el margen. Costo por cuenta aprobada: lo gastado en evaluaciones dividido entre las que pasaron.</div>
   </div>
   <footer>Simulación con datos del Nasdaq (NQ, velas de 1 minuto) y las reglas de cada firma leídas en sus centros de ayuda. El precio de Lucid no está verificado. No son resultados reales ni asesoría financiera.</footer>
 </main>
@@ -129,8 +129,8 @@ function renderCmp(){
         <div><div class="n" style="color:var(--muted)">${t.abiertas_al_final}</div><div class="l">siguen abiertas</div></div></div>
       <div class="stack" aria-hidden="true"><i class="p" style="width:${100*t.pasaron/c}%"></i><i class="q" style="width:${100*t.quemadas/c}%"></i><i class="o" style="width:${100*t.abiertas_al_final/c}%"></i></div>
       <div class="keyline"><span>Pasa <b style="color:var(--ink)">${Math.round(100*t.pasaron/c)}%</b> de las compradas</span><span>De cada 5: pasan <b style="color:var(--ink)">${(5*t.pasaron/c).toFixed(1).replace('.', ',')}</b></span></div>
-      <div class="money"><div>Gastado en evaluaciones<b>${usd(t.costo)}</b></div><div>Cobrado de fondeadas<b>${usd(t.cobrado)}</b></div><div>Neto<b class="gold">${sgn(t.cobrado - t.costo)}</b></div></div>
-    </div>`; }).join('') + `<p class="cnote">Para comparar las evaluaciones mira <b style="color:var(--ink)">pasaron y se quemaron</b>. Lo cobrado depende también de en qué semanas entró cada fondeada; con solo 5 meses eso pesa mucho y no dice cuál evaluación es mejor.</p>`;
+      <div class="money"><div>Gastado en evaluaciones<b>${usd(t.costo)}</b></div><div>Cuentas aprobadas<b>${t.pasaron}</b></div><div>Costo por cuenta aprobada<b class="gold">${t.pasaron ? usd(t.costo / t.pasaron) : '—'}</b></div></div>
+    </div>`; }).join('') + `<p class="cnote">La evaluación solo sirve para llegar a la meta. Por eso aquí se compara solo lo que depende de ella: <b style="color:var(--ink)">cuántas pasan, cuántas se queman y cuánto cuesta cada cuenta aprobada</b>. Lo que se gana después en las fondeadas es igual con las dos.</p>`;
 }
 function cell(r){
   if (!r || (!r.compradas && !r.pasaron && !r.quemadas)) return '<span class="zero">—</span>';
