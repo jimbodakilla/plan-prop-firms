@@ -373,9 +373,21 @@ footer .brand{font-size:15px;color:var(--ink)}
 .xmore dt{font-weight:700}
 .xmore dd{margin:2px 0 0;color:var(--muted);font-size:15px}
 .evstrip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
-.evstrip div{background:var(--surface);padding:16px}
+.evstrip > div{background:var(--surface);padding:16px 18px}
 .evstrip .lab{font-size:14px;color:var(--muted)}
 .evstrip .v{font-size:22px;font-weight:800;font-variant-numeric:tabular-nums;margin-top:2px}
+.evstrip .s{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.45}
+.evintro{font-size:15px;color:var(--muted);margin:0 0 14px;max-width:860px}
+.evintro b{color:var(--ink)}
+.evfirm{width:100%;border-collapse:collapse;margin-top:14px;font-variant-numeric:tabular-nums;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.evfirm th,.evfirm td{padding:10px 16px;text-align:right;border-bottom:1px solid var(--line);font-size:15px}
+.evfirm th{font-size:13px;font-weight:600;color:var(--muted)}
+.evfirm th:first-child,.evfirm td:first-child{text-align:left}
+.evfirm tr:last-child td{border-bottom:0}
+.evfirm td.eq{color:var(--muted);font-weight:400}
+.evfirm td b{font-weight:800}
+.evfirm .sm{display:none}
+@media (max-width:640px){.evfirm{table-layout:fixed}.evfirm th,.evfirm td{padding:9px 6px;font-size:12.5px;white-space:normal}.evfirm th:first-child,.evfirm td:first-child{width:34%}.evfirm .hide-xs{display:none}.evfirm th,.evfirm td{overflow-wrap:break-word}.evfirm .lg{display:none}.evfirm .sm{display:inline}}
 .fpdet{margin-top:18px}
 .fpdet summary{cursor:pointer;font-size:15px;font-weight:700;min-height:32px;display:inline-flex;align-items:center}
 .legend .be{display:inline-block;width:14px;border-top:2px dashed var(--pos);margin-right:6px;vertical-align:4px}
@@ -493,7 +505,9 @@ footer .brand{font-size:15px;color:var(--ink)}
     <p class="xwhy" id="xwhy"></p>
     <details class="xmore"><summary>¿Qué hace cada salida?</summary><dl id="xdesc"></dl></details>
     <h3 class="subsec">Evaluaciones <span style="color:var(--muted);font-weight:400;font-size:16px">· congelada: primera señal, stop 30 / objetivo 50, hasta $1,000</span></h3>
+    <p class="evintro">La evaluación solo sirve para llegar a la meta. Como la mayoría se quema antes, para conseguir <b>una</b> fondeada compras en promedio <b>unas 3 evaluaciones</b>: la que pasa y las que se quemaron antes. Todo este gasto ya está restado del resultado de arriba.</p>
     <div class="evstrip" id="evstrip"></div>
+    <table class="evfirm" id="evfirm"></table>
     <div class="subhead" id="calHead" style="margin-top:32px;font-size:20px">Cada año calendario, empezando de cero el 1 de enero</div>
     <p class="muted small" style="margin:6px 0 12px">Total del año (cobros − evaluaciones). Así se ve qué tan distinto fue 2026 de los demás años.</p>
     <div class="tbl-wrap"><table id="calTable"></table></div>
@@ -749,8 +763,17 @@ function renderPlan(){
   $('#xwhy').textContent = others.every(x => bal.m.bad >= x.m.bad) ? `${FU_TXT[D.exit_default].t} es tu plan: en un año malo deja más que las otras dos.` : '';
   $('#xdesc').innerHTML = X.map(x => `<div><dt>${esc(FU_TXT[x.v].t)}</dt><dd>${esc(FU_TXT[x.v].d)}</dd></div>`).join('');
   const e = mstats(fs, st.exit, st.risk, 'plan');
-  $('#evstrip').innerHTML = [['Pasan', `${Math.round(e.passFrac * 100)} de cada 100`], ['Evaluaciones compradas al año', Math.round(e.opened).toLocaleString('en-US')],
-    ['Gasto en evaluaciones al año', k0(e.cost)], ['Gasto por cada fondeada (incluye las que se queman)', usd(e.costPerF)]].map(([l, v]) => `<div><div class="lab">${l}</div><div class="v">${v}</div></div>`).join('');
+  const pp = Math.round(e.passFrac * 100), per = 1 / Math.max(.01, e.passFrac);
+  $('#evstrip').innerHTML = [
+    ['Pasan', `${pp} de cada 100`, `Las otras ${100 - pp} se queman antes de llegar a la meta.`],
+    ['Evaluaciones compradas al año', Math.round(e.opened).toLocaleString('en-US'), `Sumando ${fs.length === 1 ? esc(META[fs[0]].title) : 'las ' + fs.length + ' firmas'}, con 3 a la vez en cada una.`],
+    ['Gasto en evaluaciones al año', k0(e.cost), 'Lo que pagas a las firmas por evaluaciones (y activaciones, si la firma cobra).'],
+    ['Gasto por cada fondeada', usd(e.costPerF), `Precio de la evaluación × ${per.toFixed(1)} evaluaciones que compras hasta que una pasa (promedio de las firmas elegidas).`]]
+    .map(([l, v, sb]) => `<div><div class="lab">${l}</div><div class="v">${v}</div><div class="s">${sb}</div></div>`).join('');
+  const fr = fs.map(f => { const w = BY(f, st.exit, st.risk, 'plan').win, op = w.reduce((t, r) => t + r[0], 0), ps = w.reduce((t, r) => t + r[1], 0), c = w.reduce((t, r) => t + r[2], 0);
+    return {f, price:META[f].price, n:op / Math.max(1, ps), cpf:c / Math.max(1, ps)}; }).sort((a, b) => a.cpf - b.cpf);
+  $('#evfirm').innerHTML = `<thead><tr><th scope="col">Firma</th><th scope="col"><span class="lg">Precio de la evaluación</span><span class="sm">Precio</span></th><th scope="col" class="hide-xs"></th><th scope="col"><span class="lg">Evaluaciones por cada fondeada</span><span class="sm">Evals. por fondeada</span></th><th scope="col" class="hide-xs"></th><th scope="col"><span class="lg">Gasto por cada fondeada</span><span class="sm">Gasto por fondeada</span></th></tr></thead>`
+    + `<tbody>${fr.map(r => `<tr><td><span class="sw" style="background:${FC(r.f)};margin-right:8px"></span>${esc(META[r.f].title)}</td><td>${esc(r.price)}</td><td class="eq hide-xs">×</td><td>${r.n.toFixed(1)}</td><td class="eq hide-xs">=</td><td><b>${usd(r.cpf)}</b></td></tr>`).join('')}</tbody>`;
 }
 document.addEventListener('click', e => {
   const x = e.target.closest('.xsel'); if (x){ setExit(x.dataset.v); return; }
