@@ -750,7 +750,7 @@ function renderPlan(){
   $('#xdesc').innerHTML = X.map(x => `<div><dt>${esc(FU_TXT[x.v].t)}</dt><dd>${esc(FU_TXT[x.v].d)}</dd></div>`).join('');
   const e = mstats(fs, st.exit, st.risk, 'plan');
   $('#evstrip').innerHTML = [['Pasan', `${Math.round(e.passFrac * 100)} de cada 100`], ['Evaluaciones compradas al año', Math.round(e.opened).toLocaleString('en-US')],
-    ['Gasto en evaluaciones al año', k0(e.cost)], ['Costo por cada fondeada', usd(e.costPerF)]].map(([l, v]) => `<div><div class="lab">${l}</div><div class="v">${v}</div></div>`).join('');
+    ['Gasto en evaluaciones al año', k0(e.cost)], ['Gasto por cada fondeada (incluye las que se queman)', usd(e.costPerF)]].map(([l, v]) => `<div><div class="lab">${l}</div><div class="v">${v}</div></div>`).join('');
 }
 document.addEventListener('click', e => {
   const x = e.target.closest('.xsel'); if (x){ setExit(x.dataset.v); return; }
