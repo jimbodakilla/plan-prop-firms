@@ -436,6 +436,48 @@ footer .brand{font-size:15px;color:var(--ink)}
 body[data-tab="bot"] #inicio, body[data-tab="bot"] main > *:not(#bot), body[data-tab="bot"] #links, body[data-tab="bot"] .picker, body[data-tab="bot"] .menu-btn{display:none!important}
 body[data-tab="plan"] #bot{display:none}
 body[data-tab="bot"] #bot{padding-top:28px}
+/* ---------- v11: plan de trabajo del 13-nov-2026 (reemplaza la vista del plan del 3-nov; lo anterior queda oculto y archivado en plan-3-nov.html) ---------- */
+body[data-tab="plan"] #inicio, body[data-tab="plan"] main > *:not(.v11){display:none!important}
+.picker{display:none!important}
+.tabs button{white-space:nowrap}
+@media (max-width:640px){.tabs button{padding:6px 8px;font-size:12px}.cumx span:first-child{font-size:0}.cumx span:first-child::after{content:"1";font-size:10px}}
+.nhero{padding:56px 0 8px;display:flex;flex-direction:column;gap:18px;max-width:900px}
+.nhero h1{font-size:clamp(34px,5.4vw,68px)}
+.nhero p.sub{font-size:18px;color:#D4D4D8;max-width:70ch;margin:0}
+.npill{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--muted);border:1px solid var(--line2);border-radius:999px;padding:6px 12px}
+.npill i{width:7px;height:7px;border-radius:50%;background:var(--gold)}
+.ntiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:28px}
+@media (max-width:900px){.ntiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.ntile{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px}
+.ntile .v{font-stretch:112%;font-weight:800;font-size:clamp(24px,2.6vw,34px);font-variant-numeric:tabular-nums;line-height:1.1}
+.ntile .v.gold{color:var(--gold)}
+.ntile .k{font-weight:700;margin-top:8px}.ntile .s{font-size:13px;color:var(--muted);margin-top:4px;line-height:1.5}
+section.v11{padding-top:72px}
+.v11 .tbl-wrap{margin-top:14px}.v11 td,.v11 th{white-space:normal;text-align:left}.v11 td.num,.v11 th.num{text-align:right;white-space:nowrap}
+.v11 td:first-child,.v11 th:first-child{white-space:nowrap}
+.v11 tr.tot td{font-weight:800;border-top:1px solid var(--line2)}
+.v11 tr.hi td{background:rgba(242,179,91,.07)}
+.pos{color:var(--pos)}.neg{color:var(--neg)}
+.stages3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:6px}
+@media (max-width:980px){.stages3{grid-template-columns:1fr}}
+.stg h3{font-size:19px;margin:12px 0 4px}.stg .big{font-stretch:112%;font-weight:800;font-size:30px;margin-top:10px;font-variant-numeric:tabular-nums}
+.stg .big small{font-size:14px;font-weight:600;color:var(--muted);font-stretch:100%}
+.stg dl{margin:12px 0 0;display:grid;grid-template-columns:1fr auto;gap:8px 12px;font-size:15px}.stg dt{color:var(--muted)}.stg dd{margin:0;font-weight:700;font-variant-numeric:tabular-nums;text-align:right}
+.cum{display:flex;align-items:flex-end;gap:6px;height:230px;margin-top:18px;padding:0 4px;border-bottom:1px solid var(--line2);position:relative}
+.cum .c{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;min-width:0}
+.cum .b{width:100%;max-width:64px;border-radius:6px 6px 0 0;background:var(--pos)}
+.cum .b.n{background:var(--neg);border-radius:0 0 6px 6px}
+.cum .l{font-size:12px;font-weight:700;margin-bottom:5px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.cumx{display:flex;gap:6px;padding:6px 4px 0}.cumx span{flex:1;text-align:center;font-size:12px;color:var(--muted)}
+@media (max-width:640px){.cum .l{font-size:10px;transform:rotate(-55deg);transform-origin:bottom center;margin-bottom:14px}.cumx span{font-size:10px}}
+.funnel{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-top:14px}
+@media (max-width:900px){.funnel{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.fstep{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px}
+.fstep b{display:block;font-stretch:112%;font-weight:800;font-size:28px;font-variant-numeric:tabular-nums}
+.fstep span{display:block;color:var(--muted);font-size:14px;margin-top:4px}
+.fstep.end{border-color:var(--gold)}.fstep.end b{color:var(--gold)}
+.warnbox{margin-top:16px;border:1px solid rgba(251,191,36,.45);background:rgba(251,191,36,.06);border-radius:14px;padding:14px 18px;color:#E4E4E7;font-size:15px;max-width:90ch}
+.nlist{margin:10px 0 0;padding-left:20px;color:#D4D4D8;max-width:86ch}.nlist li+li{margin-top:8px}
 /* ---------- v11: pestaña Reglas (reglas vigentes por departamento) ---------- */
 body[data-tab="operacion"] #inicio, body[data-tab="operacion"] main > *:not(#operacion), body[data-tab="operacion"] #links, body[data-tab="operacion"] .picker, body[data-tab="operacion"] .menu-btn{display:none!important}
 body:not([data-tab="operacion"]) #operacion{display:none}
@@ -500,13 +542,12 @@ body[data-tab="operacion"] #operacion{padding-top:28px}
     <a class="brand" href="#inicio" data-go="inicio">JIMBO 15/1 <span>PLAN</span></a>
     <div class="tabs" role="tablist" aria-label="Vista"><button type="button" role="tab" data-tab="plan" aria-selected="true">El plan</button><button type="button" role="tab" data-tab="bot" aria-selected="false"><span class="dot" aria-hidden="true"></span>Bot</button><button type="button" role="tab" data-tab="operacion" aria-selected="false">Reglas</button></div>
     <div class="links" id="links">
-      <a href="#anio" data-go="anio">Año típico</a>
-      <a href="#ranking" data-go="ranking">Qué firma rinde más</a>
-      <a href="#y2026" data-go="y2026">2026</a>
-      <a href="#tsplan" data-go="tsplan">Tu plan</a>
-      <a href="#como" data-go="como">Cómo funciona</a>
-      <a href="#reglas" data-go="reglas">Reglas</a>
-      <a href="#riesgos" data-go="riesgos">Riesgos</a>
+      <a href="#p-etapas" data-go="p-etapas">Las etapas</a>
+      <a href="#p-firmas" data-go="p-firmas">Las 3 firmas</a>
+      <a href="#p-calendario" data-go="p-calendario">Calendario</a>
+      <a href="#p-embudo" data-go="p-embudo">Cómo se llega a cobrar</a>
+      <a href="#p-2026" data-go="p-2026">2026</a>
+      <a href="#p-riesgos" data-go="p-riesgos">Riesgos</a>
     </div>
     <div class="nav-right">
       <div class="picker">
@@ -541,6 +582,182 @@ body[data-tab="operacion"] #operacion{padding-top:28px}
 </header>
 
 <main class="wrap">
+  <div class="v11 nhero" id="p-inicio">
+    <span class="npill"><i></i>Versión 11 · 13-nov-2026 · plan de trabajo vigente</span>
+    <h1 class="display">Topstep primero.<br><span class="gold">Después FTMO y Lucid.</span></h1>
+    <p class="sub">Una estrategia (Jimbo 15/1) operada por un bot. El lunes 16 de noviembre de 2026 arranca en Topstep 50K. Con el primer cobro se abren FTMO y Lucid, para no depender de una sola firma. Las reglas de cada departamento están en la pestaña <a href="#operacion" data-go="operacion" style="color:var(--gold)">Reglas</a>.</p>
+  </div>
+  <div class="v11 ntiles">
+    <div class="ntile"><div class="v gold">+$52,100</div><div class="k">Topstep en 12 meses, año típico</div><div class="s">Con lo que arranca el lunes. Año bueno $78,400 · año malo $19,800</div></div>
+    <div class="ntile"><div class="v">Semana 12</div><div class="k">Primer cobro en la mano</div><div class="s">Principios de febrero de 2027. Pronto: semana 6. Tarde: semana 25</div></div>
+    <div class="ntile"><div class="v">$2,700</div><div class="k">De tu bolsillo, caso típico</div><div class="s">Antes de que los cobros paguen el resto. El peor caso medido: $8,700</div></div>
+    <div class="ntile"><div class="v">38 de 100</div><div class="k">Evaluaciones que aprueban</div><div class="s">De las fondeadas, 35 de cada 100 llegan a cobrar</div></div>
+  </div>
+
+  <section class="v11" id="p-etapas" aria-labelledby="h-etapas">
+    <div class="sec-head">
+      <span class="kicker">Las etapas</span>
+      <h2 class="display" id="h-etapas">Lo que arranca el lunes y <span class="gold">a dónde va</span></h2>
+      <p>Las evaluaciones no cambian en ninguna etapa. Lo que se va agregando son reglas en las cuentas fondeadas para perder menos. Cada etapa nueva se programa en una copia del bot, se prueba sin dinero y se autoriza aparte.</p>
+    </div>
+    <div class="stages3">
+      <div class="card stg">
+        <div class="chips"><span class="chip ok">Autorizada · desde el 16-nov</span></div>
+        <h3>Etapa 1 · Jimbo solo</h3>
+        <p class="small muted" style="margin:0">Fondeadas a $750 por trade</p>
+        <div class="big">$52,100 <small>año típico</small></div>
+        <dl><dt>Año malo</dt><dd>$19,800</dd><dt>Evaluaciones compradas al año</dt><dd>95</dd><dt>Fondeadas quemadas al año</dt><dd>29</dd><dt>Fondeadas que llegan a cobrar</dt><dd>35 de 100</dd></dl>
+      </div>
+      <div class="card stg">
+        <div class="chips"><span class="chip pr">Por programar y probar</span></div>
+        <h3>Etapa 2 · con la regla de señales flojas</h3>
+        <p class="small muted" style="margin:0">No opera los trades más flojos y achica los dudosos</p>
+        <div class="big">$50,100 <small>año típico</small></div>
+        <dl><dt>Año malo</dt><dd>$26,000</dd><dt>Evaluaciones compradas al año</dt><dd>72</dd><dt>Fondeadas quemadas al año</dt><dd>20</dd><dt>Fondeadas que llegan a cobrar</dt><dd>44 de 100</dd></dl>
+      </div>
+      <div class="card stg">
+        <div class="chips"><span class="chip pr">Por programar y probar</span></div>
+        <h3>Etapa 3 · más el Empuje 15</h3>
+        <p class="small muted" style="margin:0">Segundo trade del día: Jimbo $625 y Empuje $625</p>
+        <div class="big">$81,000 <small>año típico</small></div>
+        <dl><dt>Año malo</dt><dd>$48,400</dd><dt>Evaluaciones compradas al año</dt><dd>75</dd><dt>Fondeadas quemadas al año</dt><dd>20</dd><dt>Fondeadas que llegan a cobrar</dt><dd>42 de 100</dd></dl>
+      </div>
+    </div>
+    <p class="opnote">Solo Topstep, 12 meses, medido en 147 arranques reales en lunes entre 2023 y 2025, en el orden en que ocurrieron. "Año malo" quiere decir que solo 1 de cada 10 arranques terminó peor. La regla de la etapa 2 busca perder menos, no ganar más: el año típico queda igual y bajan las cuentas quemadas y el gasto.</p>
+  </section>
+
+  <section class="v11" id="p-firmas" aria-labelledby="h-firmas">
+    <div class="sec-head">
+      <span class="kicker">Las 3 firmas</span>
+      <h2 class="display" id="h-firmas">Tres firmas para <span class="gold">no depender de una</span></h2>
+      <p>FTMO y Lucid se abren con el dinero del primer cobro de Topstep. Cada firma está medida 12 meses desde su propio arranque.</p>
+    </div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Firma</th><th>Cómo se opera</th><th class="num">Año típico</th><th class="num">Año malo</th><th>Para abrir</th><th>Estado</th></tr></thead>
+      <tbody>
+        <tr><td>Topstep 50K</td><td>Etapa 1: Jimbo solo</td><td class="num pos">+$52,100</td><td class="num pos">+$19,800</td><td>$85 por evaluación, 4 a la vez</td><td>Arranca el 16-nov</td></tr>
+        <tr><td>Topstep 50K</td><td>Etapa 3: Jimbo + Empuje + regla</td><td class="num pos">+$81,000</td><td class="num pos">+$48,400</td><td>Igual</td><td>Por programar</td></tr>
+        <tr><td>FTMO Pro 50K</td><td>Jimbo solo, $850 por trade</td><td class="num pos">+$35,300</td><td class="num pos">+$21,600</td><td>$139 al mes, 3 evaluaciones</td><td>Falta conexión, prueba y autorización</td></tr>
+        <tr><td>Lucid Flex 50K</td><td>Jimbo solo, $500 por trade</td><td class="num pos">+$23,600</td><td class="num pos">+$8,500</td><td>$80.50 por evaluación, 4 de una vez</td><td>Falta copiador, prueba y autorización</td></tr>
+        <tr><td>Lucid Flex 50K</td><td>Jimbo + Empuje + regla</td><td class="num pos">+$36,200</td><td class="num pos">+$21,400</td><td>Igual</td><td>Por programar</td></tr>
+        <tr class="tot"><td>Las tres</td><td>Como arranca cada una (Jimbo solo)</td><td class="num pos">+$111,000</td><td class="num pos">+$49,900</td><td></td><td></td></tr>
+        <tr class="tot hi"><td>Las tres</td><td>Con Empuje y regla en Topstep y Lucid</td><td class="num pos">+$152,500</td><td class="num pos">+$91,400</td><td></td><td></td></tr>
+      </tbody>
+    </table></div>
+    <p class="opnote">Los totales son la suma de las filas. Como FTMO y Lucid arrancan unos tres meses después que Topstep, el primer año calendario completo queda por debajo de esa suma. En FTMO la regla de señales flojas no se usa: en las pruebas empeoró su año malo.</p>
+    <p class="opnote">Reserva: al abrir las tres firmas se dejan $11,000 en la cuenta bancaria del negocio para seguir comprando evaluaciones en las rachas sin cobros ($4,500 mientras solo opere Topstep). Todo cobro sale al banco apenas la cuenta cumple; dentro de las firmas no se deja dinero a propósito.</p>
+  </section>
+
+  <section class="v11" id="p-calendario" aria-labelledby="h-cal">
+    <div class="sec-head">
+      <span class="kicker">Calendario</span>
+      <h2 class="display" id="h-cal">Los primeros meses van <span class="gold">en rojo</span></h2>
+      <p>Topstep, etapa 1. Primero se compran evaluaciones; los cobros llegan después y en rachas. Esto es el acumulado típico en el bolsillo al cierre de cada mes.</p>
+    </div>
+    <div class="card">
+      <div class="cum" role="img" aria-label="Acumulado neto típico por mes: negativo los tres primeros meses, +$6,800 en el mes 4 y +$52,100 en el mes 12">
+        <div class="c"><span class="l neg">−$950</span><div class="b n" style="height:1.8%"></div></div>
+        <div class="c"><span class="l neg">−$1,650</span><div class="b n" style="height:3.2%"></div></div>
+        <div class="c"><span class="l neg">−$850</span><div class="b n" style="height:1.6%"></div></div>
+        <div class="c"><span class="l">+$6,800</span><div class="b" style="height:11%"></div></div>
+        <div class="c"><span class="l">+$10,400</span><div class="b" style="height:17%"></div></div>
+        <div class="c"><span class="l">+$12,300</span><div class="b" style="height:20%"></div></div>
+        <div class="c"><span class="l">+$15,100</span><div class="b" style="height:25%"></div></div>
+        <div class="c"><span class="l">+$22,400</span><div class="b" style="height:37%"></div></div>
+        <div class="c"><span class="l">+$27,500</span><div class="b" style="height:45%"></div></div>
+        <div class="c"><span class="l">+$38,400</span><div class="b" style="height:63%"></div></div>
+        <div class="c"><span class="l">+$39,800</span><div class="b" style="height:65%"></div></div>
+        <div class="c"><span class="l">+$52,100</span><div class="b" style="height:85%"></div></div>
+      </div>
+      <div class="cumx"><span>Mes 1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span></div>
+    </div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Hito</th><th>Caso típico</th><th>Pronto (1 de cada 10)</th><th>Tarde (1 de cada 10)</th></tr></thead>
+      <tbody>
+        <tr><td>Primera evaluación</td><td>Lunes 16-nov-2026</td><td></td><td></td></tr>
+        <tr><td>Cuatro evaluaciones operando</td><td>Lunes 7-dic-2026</td><td></td><td></td></tr>
+        <tr><td>Primer cobro en la mano</td><td>Semana 12, principios de febrero de 2027</td><td>Semana 6, fines de diciembre</td><td>Semana 25, mediados de mayo</td></tr>
+        <tr><td>Gastado en evaluaciones hasta ese cobro</td><td>$2,550 (30 evaluaciones)</td><td></td><td>$5,865 (69 evaluaciones)</td></tr>
+        <tr><td>Se abren FTMO y Lucid</td><td>Con ese primer cobro</td><td></td><td></td></tr>
+        <tr><td>Acumulado en positivo</td><td>Mes 4, mediados de marzo de 2027</td><td></td><td></td></tr>
+        <tr><td>Primeros $10,000</td><td>Mes 5, mediados de abril de 2027</td><td></td><td></td></tr>
+      </tbody>
+    </table></div>
+    <p class="opnote">Las compras de evaluaciones son unas 8 al mes ($680) en el caso típico y unas 11 el primer mes. En una mala racha el peor mes llega a $2,040.</p>
+  </section>
+
+  <section class="v11" id="p-embudo" aria-labelledby="h-emb">
+    <div class="sec-head">
+      <span class="kicker">Cómo se llega a cobrar</span>
+      <h2 class="display" id="h-emb">La mayoría de las cuentas se quema. <span class="gold">Las que cobran pagan todas.</span></h2>
+      <p>Todas las cuentas copian el mismo trade. En evaluación cada trade gana $1,580 o pierde $988, y gana 42 de cada 100 veces. Esto es lo que sale, en promedio, de 32 evaluaciones.</p>
+    </div>
+    <div class="funnel">
+      <div class="fstep"><b>32</b><span>evaluaciones compradas ($2,720)</span></div>
+      <div class="fstep"><b>12</b><span>aprueban. Las otras 20 se queman</span></div>
+      <div class="fstep"><b>11</b><span>fondeadas activadas</span></div>
+      <div class="fstep"><b>4</b><span>fondeadas que cobran al menos una vez</span></div>
+      <div class="fstep end"><b>$19,000</b><span>en unos 7 cobros a lo largo de su vida</span></div>
+    </div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Lo que le pasa a una evaluación</th><th>Saldo después de cada trade</th><th>Resultado</th><th class="num">De cada 100</th></tr></thead>
+      <tbody>
+        <tr><td>Pierde, pierde</td><td>−$988 → −$1,975</td><td class="neg">Se quema</td><td class="num">32</td></tr>
+        <tr><td>Gana, gana</td><td>+$1,580 → +$3,062</td><td class="pos">Aprueba</td><td class="num">17</td></tr>
+        <tr><td>Gana, pierde, pierde</td><td>+$1,580 → +$655 → −$333</td><td class="neg">Se quema</td><td class="num">8</td></tr>
+        <tr><td>Pierde, gana, pierde, pierde</td><td>−$988 → +$593 → −$395 → −$1,382</td><td class="neg">Se quema</td><td class="num">6</td></tr>
+        <tr><td>Pierde, gana, gana, gana</td><td>−$988 → +$593 → +$2,173 → +$3,062</td><td class="pos">Aprueba</td><td class="num">5</td></tr>
+        <tr><td>Gana, pierde, gana, gana</td><td>+$1,580 → +$655 → +$2,235 → +$3,025</td><td class="pos">Aprueba</td><td class="num">4</td></tr>
+        <tr><td>Caminos más largos</td><td>5 trades o más</td><td>12 aprueban, 16 se queman</td><td class="num">28</td></tr>
+        <tr class="tot"><td>Total</td><td></td><td>38 aprueban, 62 se queman</td><td class="num">100</td></tr>
+      </tbody>
+    </table></div>
+    <p class="opnote">El primer cobro de una fondeada es de $2,781 en el caso típico. De las cuentas que cobran, la mitad cobra una sola vez y la otra mitad dos o más. Por cada 100 evaluaciones compradas ($8,500) entran en promedio $59,700 en cobros.</p>
+  </section>
+
+  <section class="v11" id="p-2026" aria-labelledby="h-2026n">
+    <div class="sec-head">
+      <span class="kicker">2026</span>
+      <h2 class="display" id="h-2026n">Cómo habría ido <span class="gold">este año</span></h2>
+      <p>Las tres firmas con Jimbo + Empuje, del 2 de enero al 12 de noviembre de 2026, con y sin la regla de señales flojas. FTMO y Lucid abren el 25 de febrero, con el primer cobro de Topstep. Cada mes es lo que entró al banco menos lo gastado en evaluaciones.</p>
+    </div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Mes</th><th class="num">Topstep</th><th class="num">FTMO</th><th class="num">Lucid</th><th class="num">Total con la regla</th><th class="num">Total sin la regla</th></tr></thead>
+      <tbody>
+        <tr><td>Enero</td><td class="num neg">−$700</td><td class="num"></td><td class="num"></td><td class="num neg">−$700</td><td class="num neg">−$700</td></tr>
+        <tr><td>Febrero</td><td class="num pos">+$2,200</td><td class="num neg">−$100</td><td class="num neg">−$300</td><td class="num pos">+$1,700</td><td class="num pos">+$200</td></tr>
+        <tr><td>Marzo</td><td class="num pos">+$5,900</td><td class="num neg">−$800</td><td class="num neg">−$1,300</td><td class="num pos">+$3,800</td><td class="num pos">+$3,000</td></tr>
+        <tr><td>Abril</td><td class="num pos">+$12,900</td><td class="num pos">+$13,400</td><td class="num pos">+$6,900</td><td class="num pos">+$33,100</td><td class="num pos">+$33,100</td></tr>
+        <tr><td>Mayo</td><td class="num pos">+$18,800</td><td class="num pos">+$4,500</td><td class="num pos">+$1,800</td><td class="num pos">+$25,100</td><td class="num pos">+$25,100</td></tr>
+        <tr><td>Junio</td><td class="num neg">−$1,700</td><td class="num pos">+$9,000</td><td class="num pos">+$9,000</td><td class="num pos">+$16,300</td><td class="num pos">+$18,000</td></tr>
+        <tr><td>Julio</td><td class="num pos">+$15,600</td><td class="num pos">+$27,000</td><td class="num pos">+$16,200</td><td class="num pos">+$58,800</td><td class="num pos">+$29,200</td></tr>
+        <tr><td>Agosto</td><td class="num pos">+$26,500</td><td class="num pos">+$13,500</td><td class="num pos">+$8,400</td><td class="num pos">+$48,300</td><td class="num pos">+$23,500</td></tr>
+        <tr><td>Septiembre</td><td class="num neg">−$700</td><td class="num">$0</td><td class="num pos">+$500</td><td class="num neg">−$200</td><td class="num neg">−$3,500</td></tr>
+        <tr><td>Octubre</td><td class="num pos">+$8,900</td><td class="num pos">+$12,700</td><td class="num pos">+$2,900</td><td class="num pos">+$24,400</td><td class="num pos">+$33,100</td></tr>
+        <tr><td>Noviembre (12 días)</td><td class="num">$0</td><td class="num">$0</td><td class="num pos">+$4,900</td><td class="num pos">+$4,900</td><td class="num pos">+$5,100</td></tr>
+        <tr class="tot hi"><td>Total</td><td class="num pos">+$87,700</td><td class="num pos">+$79,100</td><td class="num pos">+$48,900</td><td class="num pos">+$215,700</td><td class="num pos">+$166,100</td></tr>
+      </tbody>
+    </table></div>
+    <p class="opnote">Las columnas de cada firma son con la regla. Los meses en $0 o en negativo no son meses sin operar: son meses en que ninguna cuenta completó los días para cobrar. Septiembre fue malo de verdad en Topstep, con 9 fondeadas quemadas. Al 12 de noviembre las 5 fondeadas de Topstep tenían adentro unos $11,100 sin retirar.</p>
+    <div class="warnbox"><b>2026 es un año bueno y es el que más favorece a la regla.</b> Además está dentro de los datos con que se armó. Sirve para ver cómo se mueve el dinero mes a mes, no como pronóstico. Para planificar, usa los números de 12 meses de las secciones de arriba.</div>
+  </section>
+
+  <section class="v11" id="p-riesgos" aria-labelledby="h-rsg">
+    <div class="sec-head">
+      <span class="kicker">Riesgos</span>
+      <h2 class="display" id="h-rsg">Lo que puede <span class="gold">salir distinto</span></h2>
+    </div>
+    <ul class="nlist">
+      <li><b>Son simulaciones con datos pasados.</b> En vivo puede rendir menos: las reglas se eligieron mirando esos mismos años.</li>
+      <li><b>Las rachas malas existen.</b> La más larga desde 2023 fue de 10 pérdidas seguidas en evaluación. En Topstep, el tramo más largo del año sin ningún cobro dura unos cuatro meses en el caso típico.</li>
+      <li><b>El caso lento cuesta el doble.</b> En 1 de cada 10 arranques el primer cobro tarda hasta mayo y hacen falta 69 evaluaciones ($5,865).</li>
+      <li><b>La regla de señales flojas y el Empuje 15 todavía no están en el bot.</b> La regla se sostuvo en años que no se usaron para armarla, pero falta programarla exacta y probarla sin dinero. Si el bot leyera mal 1 de cada 10 señales, el beneficio puede desaparecer.</li>
+      <li><b>Una firma puede cerrar las cuentas o pasarlas a Live.</b> Por eso son tres firmas y por eso el dinero sale al banco en cada cobro. Falta confirmar con Topstep y FTMO qué dispara el pase a Live.</li>
+      <li><b>FTMO y Lucid todavía no están conectadas.</b> Cada una necesita su conexión, su prueba sin dinero y su autorización.</li>
+    </ul>
+    <p class="opnote">La versión anterior de esta página (3-nov-2026, con el comparador de 11 firmas) quedó archivada <a href="plan-3-nov.html" style="color:var(--gold)">aquí</a>.</p>
+  </section>
+
   <div class="stats" id="stats"></div>
 
   <section id="resumen" style="padding-top:64px" aria-labelledby="h-res">
@@ -889,7 +1106,7 @@ body[data-tab="operacion"] #operacion{padding-top:28px}
 <footer>
   <div class="wrap">
     <span class="brand">JIMBO 15/1 <span style="color:var(--gold)">PLAN</span></span>
-    <p>Versión 3-nov-2026 · Simulación con datos históricos del Nasdaq (NQ, velas de 1 minuto, ago-2019 a oct-2026). No son resultados reales ni asesoría financiera. Montos en USD.</p>
+    <p>Versión 13-nov-2026 · Simulación con datos históricos del Nasdaq (NQ, velas de 1 minuto, ago-2019 a nov-2026). No son resultados reales ni asesoría financiera. Montos en USD.</p>
     <p>Reglas de cada firma leídas en sus páginas oficiales (fecha y estado en cada tarjeta). Esta página no está afiliada a ninguna firma ni a TradeSyncer.</p>
     <a class="btn btn-ghost btn-sm totop" href="#inicio" data-go="inicio">Volver arriba <span class="arrow">↑</span></a>
   </div>
