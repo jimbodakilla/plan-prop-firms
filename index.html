@@ -436,6 +436,26 @@ footer .brand{font-size:15px;color:var(--ink)}
 body[data-tab="bot"] #inicio, body[data-tab="bot"] main > *:not(#bot), body[data-tab="bot"] #links, body[data-tab="bot"] .picker, body[data-tab="bot"] .menu-btn{display:none!important}
 body[data-tab="plan"] #bot{display:none}
 body[data-tab="bot"] #bot{padding-top:28px}
+/* ---------- v11: pestaña Reglas (reglas vigentes por departamento) ---------- */
+body[data-tab="operacion"] #inicio, body[data-tab="operacion"] main > *:not(#operacion), body[data-tab="operacion"] #links, body[data-tab="operacion"] .picker, body[data-tab="operacion"] .menu-btn{display:none!important}
+body:not([data-tab="operacion"]) #operacion{display:none}
+body[data-tab="operacion"] #operacion{padding-top:28px}
+.dept{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+@media (max-width:900px){.dept{grid-template-columns:1fr}}
+.dept h3{font-size:20px;margin:12px 0 2px}
+.rl{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column}
+.rl li{display:grid;grid-template-columns:38px minmax(0,1fr);gap:4px 10px;padding:12px 0;border-top:1px solid var(--line)}
+.rl .n{font-size:13px;font-weight:800;color:var(--gold);padding-top:2px}
+.rl .t{color:#D4D4D8}.rl .t b{color:var(--ink)}
+.rl .st{grid-column:2;display:flex;flex-wrap:wrap;gap:6px}
+.opnote{margin:16px 0 0;color:var(--muted);font-size:15px;max-width:78ch}
+#operacion .tbl-wrap{margin-top:12px}#operacion td,#operacion th{white-space:normal;text-align:left}
+#operacion td:first-child,#operacion th:first-child{white-space:nowrap}
+.flags{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:12px}
+@media (max-width:900px){.flags{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.flags{grid-template-columns:1fr}}
+.flag{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.flag b{display:block;color:var(--ink);margin-bottom:4px}.flag span{color:var(--muted);font-size:14px}
 .vbar{position:sticky;top:64px;z-index:40;background:#2a1f0c;border-bottom:1px solid var(--gold);color:var(--gold2);font-size:14px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;padding:8px 16px}
 .vbar[hidden]{display:none}
 .vbar button{font:700 13px var(--font);color:#000;background:var(--gold);border:0;border-radius:999px;padding:6px 12px;cursor:pointer}
@@ -478,7 +498,7 @@ body[data-tab="bot"] #bot{padding-top:28px}
 <nav class="nav" aria-label="Secciones">
   <div class="wrap">
     <a class="brand" href="#inicio" data-go="inicio">JIMBO 15/1 <span>PLAN</span></a>
-    <div class="tabs" role="tablist" aria-label="Vista"><button type="button" role="tab" data-tab="plan" aria-selected="true">El plan</button><button type="button" role="tab" data-tab="bot" aria-selected="false"><span class="dot" aria-hidden="true"></span>Bot</button></div>
+    <div class="tabs" role="tablist" aria-label="Vista"><button type="button" role="tab" data-tab="plan" aria-selected="true">El plan</button><button type="button" role="tab" data-tab="bot" aria-selected="false"><span class="dot" aria-hidden="true"></span>Bot</button><button type="button" role="tab" data-tab="operacion" aria-selected="false">Reglas</button></div>
     <div class="links" id="links">
       <a href="#anio" data-go="anio">Año típico</a>
       <a href="#ranking" data-go="ranking">Qué firma rinde más</a>
@@ -673,6 +693,7 @@ body[data-tab="bot"] #bot{padding-top:28px}
       <h2 class="display" id="h-reglas">El plan y <span class="gold">cada firma</span></h2>
       <p><strong style="color:var(--ink)">Jimbo 15/1</strong> opera el micro Nasdaq (MNQ): busca una zona en el gráfico de 15 minutos y entra con la confirmación de 1 minuto. Máximo 1 trade al día, de 9:30 a 13:00 (hora de Nueva York).</p>
     </div>
+    <p class="opnote" style="margin:0 0 16px">Las reglas con las que se opera desde el 16-nov-2026 están en la pestaña <a href="#operacion" data-go="operacion" style="color:var(--gold)">Reglas</a>. Lo de abajo es el plan del 3-nov y está en actualización.</p>
     <div class="plan-rules">
       <div class="card">
         <div class="chips"><span class="chip ok">Fijo en Topstep (versión 2)</span><span class="chip pr">Otras firmas: propuesta</span></div>
@@ -746,6 +767,85 @@ body[data-tab="bot"] #bot{padding-top:28px}
         </ul>
       </div>
     </div>
+  </section>
+
+  <section id="operacion" aria-labelledby="h-operacion">
+    <div class="sec-head">
+      <span class="kicker">Reglas vigentes · 13-nov-2026</span>
+      <h2 class="display" id="h-operacion">Dos departamentos, <span class="gold">reglas claras</span></h2>
+      <p>El negocio se maneja como una empresa con dos departamentos. Evaluaciones gasta y produce cuentas fondeadas. Fondeadas opera esas cuentas y cobra. Arranca el lunes 16 de noviembre de 2026 en Topstep 50K.</p>
+    </div>
+
+    <div class="dept">
+      <div class="card">
+        <div class="chips"><span class="chip ok">Vigente desde el 16-nov</span></div>
+        <h3>Departamento de Evaluaciones</h3>
+        <p class="small muted" style="margin:0">Topstep 50K · $85 por evaluación</p>
+        <ul class="rl">
+          <li><span class="n">E1</span><span class="t">Solo cuentas nuevas de Topstep 50K y solo la estrategia <b>Jimbo 15/1</b>.</span></li>
+          <li><span class="n">E2</span><span class="t">Evaluaciones que se mantienen operando: <b>1 desde el lunes 16-nov, 2 desde el 23-nov, 3 desde el 30-nov y 4 desde el 7-dic</b>. Nunca más de 4.</span></li>
+          <li><span class="n">E3</span><span class="t">Reposición: cada vez que una se quema o aprueba, <b>se compra otra ese mismo día</b> para mantener el número de E2, sea el día que sea.</span></li>
+          <li><span class="n">E4</span><span class="t">No se compra si las fondeadas más las aprobadas en espera suman <b>5</b>, que es el máximo de Topstep.</span></li>
+          <li><span class="n">E5</span><span class="t">Todas las evaluaciones vivas operan <b>todas las señales</b>. No se alternan ni se turnan.</span></li>
+          <li><span class="n">E6</span><span class="t">Riesgo por trade de hasta <b>$1,000</b>: stop de 30 puntos y objetivo de 50. Lo calcula el bot.</span></li>
+          <li><span class="n">E7</span><span class="t">En evaluaciones no se aplica la regla de señales flojas ni opera el Empuje 15.</span></li>
+          <li><span class="n">E8</span><span class="t">Antes de la primera orden de cada cuenta: fecha de compra y saldo inicial cargados en el panel, y se revisa el tamaño calculado.</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="chips"><span class="chip ok">Vigente</span><span class="chip pr">Por programar</span><span class="chip wa">Pendiente</span></div>
+        <h3>Departamento de Fondeadas</h3>
+        <p class="small muted" style="margin:0">Topstep Express Funded · hasta 5 cuentas</p>
+        <ul class="rl">
+          <li><span class="n">F1</span><span class="t">Todas las fondeadas operan todas las señales de Jimbo. Máximo <b>5</b>.</span><span class="st"><span class="chip ok">Vigente</span></span></li>
+          <li><span class="n">F2</span><span class="t">Riesgo de <b>$750</b> por trade, máximo 20 micros, límite diario de $1,000.</span><span class="st"><span class="chip ok">Vigente hasta que entren F5 y F6</span></span></li>
+          <li><span class="n">F3</span><span class="t">El cobro se pide apenas la cuenta cumple <b>5 días ganadores</b>: 50% del saldo, con tope de $4,000. Todo va al banco.</span><span class="st"><span class="chip ok">Vigente</span></span></li>
+          <li><span class="n">F4</span><span class="t">Reserva en la cuenta bancaria del negocio: <b>$4,500</b> con solo Topstep y <b>$11,000</b> con las tres firmas. A la cuenta personal pasa solo el excedente.</span><span class="st"><span class="chip ok">Vigente</span></span></li>
+          <li><span class="n">F5</span><span class="t">Regla de señales flojas, solo sobre el trade de Jimbo: con <b>3 o 4</b> señales no se opera, con <b>2</b> se opera a medio riesgo, con <b>0 o 1</b> a riesgo normal.</span><span class="st"><span class="chip pr">Por programar, sombra y autorización</span></span></li>
+          <li><span class="n">F6</span><span class="t">Empuje 15 como segundo trade del día: Jimbo <b>$625</b> y Empuje <b>$625</b>. El Empuje no opera días de CPI ni de FOMC.</span><span class="st"><span class="chip pr">Por programar, sombra y autorización</span></span></li>
+          <li><span class="n">F7</span><span class="t">Apagado del Empuje: aviso si cae 16 riesgos y se apaga solo a los 22. Se vuelve a prender a mano.</span><span class="st"><span class="chip wa">Pendiente de aprobar</span></span></li>
+          <li><span class="n">F8</span><span class="t">Lucid y FTMO abren con el primer cobro de Topstep. Cada una necesita su copiador, su prueba en sombra y su autorización.</span><span class="st"><span class="chip ok">Vigente como plan</span></span></li>
+          <li><span class="n">F9</span><span class="t">Pase a Live: en Lucid no se pide el quinto cobro de una cuenta. En Topstep y FTMO falta confirmar con soporte qué lo dispara.</span><span class="st"><span class="chip wa">Pendiente de confirmar</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="subsec">Cómo se compran las evaluaciones</h3>
+    <p class="opnote">Los lunes marcan cuántas cuentas se mantienen. Entre lunes y lunes ese número siempre está completo: si una se quema un miércoles o un viernes, se repone ese mismo día.</p>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Día</th><th>Qué pasa</th><th>Compra</th><th>Evaluaciones operando</th></tr></thead>
+      <tbody>
+        <tr><td>Lunes 16-nov</td><td>Arranque</td><td>Cuenta A</td><td>1</td></tr>
+        <tr><td>Miércoles 18-nov</td><td>Ejemplo: la A se quema</td><td>1 reposición</td><td>1</td></tr>
+        <tr><td>Viernes 20-nov</td><td>Ejemplo: la reposición se quema</td><td>1 reposición</td><td>1</td></tr>
+        <tr><td>Lunes 23-nov</td><td>Sube a dos</td><td>Cuenta B</td><td>2</td></tr>
+        <tr><td>Lunes 30-nov</td><td>Sube a tres</td><td>Cuenta C</td><td>3</td></tr>
+        <tr><td>Lunes 7-dic</td><td>Sube a cuatro</td><td>Cuenta D</td><td>4</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3 class="subsec">Las cuatro señales flojas (regla F5)</h3>
+    <p class="opnote">Se miden en el momento de la señal, con velas ya cerradas. Cada una suma un punto.</p>
+    <div class="flags">
+      <div class="flag"><b>1 · Poca expansión</b><span>Una sola vela de 1 minuto a favor antes de la señal, o ninguna.</span></div>
+      <div class="flag"><b>2 · Zona perforada a medias</b><span>El retroceso entró más de la mitad de la zona de 15 minutos sin atravesarla.</span></div>
+      <div class="flag"><b>3 · Rango gastado</b><span>El día ya recorrió el 86% o más de su rango normal antes de la entrada.</span></div>
+      <div class="flag"><b>4 · Sin apoyo</b><span>No hay otra zona de 15 minutos a favor, viva y más profunda, a 4 riesgos o menos.</span></div>
+    </div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Señales flojas</th><th>Qué hace la fondeada</th><th>Trades que ganan, 2019–2022</th><th>Trades que ganan, 2023–2026</th></tr></thead>
+      <tbody>
+        <tr><td>0</td><td>Riesgo normal</td><td>53 de 100</td><td>39 de 100</td></tr>
+        <tr><td>1</td><td>Riesgo normal</td><td>33 de 100</td><td>39 de 100</td></tr>
+        <tr><td>2</td><td>Medio riesgo</td><td>28 de 100</td><td>25 de 100</td></tr>
+        <tr><td>3 o 4</td><td>No se opera</td><td>17 de 100</td><td>9 de 100</td></tr>
+      </tbody>
+    </table></div>
+    <p class="opnote">Medido sobre 963 trades de fondeada de Jimbo 15/1. La regla se armó mirando esos mismos datos, así que falta comprobarla en vivo antes de usarla con dinero real.</p>
+
+    <h3 class="subsec">Probado y descartado</h3>
+    <p class="opnote">Reponer de a una por día · bajar el riesgo a $500 después del primer cobro · alternar cuentas por turnos · operar una sola evaluación a la vez · mantener 6 evaluaciones · aplicar la regla de señales flojas en evaluaciones.</p>
   </section>
 
   <section id="bot" aria-labelledby="h-bot">
@@ -1001,13 +1101,13 @@ document.addEventListener('click', e => { const b = e.target.closest('#botAccSeg
 /* tabs */
 function setTab(t, push){ document.body.dataset.tab = t; $$('.tabs button').forEach(b => b.setAttribute('aria-selected', b.dataset.tab === t));
   try { localStorage.setItem('jimbo-tab', t); } catch(e) {}
-  if (push !== false) history.replaceState(null, '', t === 'bot' ? '#bot' : location.pathname + location.search);
+  if (push !== false) history.replaceState(null, '', t === 'bot' ? '#bot' : t === 'operacion' ? '#operacion' : location.pathname + location.search);
   if (t === 'bot') renderBot(); scrollTo({top:0}); }
 document.addEventListener('click', e => { const b = e.target.closest('.tabs button'); if (b) setTab(b.dataset.tab); });
-window.addEventListener('hashchange', () => { if (location.hash === '#bot') setTab('bot', false); });
+window.addEventListener('hashchange', () => { if (location.hash === '#bot') setTab('bot', false); if (location.hash === '#operacion') setTab('operacion', false); });
 
 /* ---------- navigation ---------- */
-function go(id){ if (id === 'bot'){ setTab('bot'); return; } if (document.body.dataset.tab === 'bot') setTab('plan'); const el = document.getElementById(id); if (!el) return;
+function go(id){ if (id === 'bot' || id === 'operacion'){ setTab(id); return; } if (document.body.dataset.tab !== 'plan') setTab('plan'); const el = document.getElementById(id); if (!el) return;
   const dt = el.closest('details'); if (dt) dt.open = true;
   el.scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: id === 'firstPayHead' ? 'center' : 'start'}); }
 document.addEventListener('click', e => {
@@ -1337,7 +1437,7 @@ function renderFirms(){
 $$('.nStarts').forEach(e => e.textContent = D.starts.length);
 function renderAll(){ renderExitSeg(); renderRiskSeg(); renderPlan(); renderBot(); renderTop(); drawHero(); renderYear(); renderRank(); render26(); renderFirms(); }
 renderAll();
-setTab(location.hash === '#bot' ? 'bot' : (() => { try { return localStorage.getItem('jimbo-tab') === 'bot' ? 'bot' : 'plan'; } catch(e) { return 'plan'; } })(), false);
+setTab(location.hash === '#bot' ? 'bot' : location.hash === '#operacion' ? 'operacion' : (() => { try { const v = localStorage.getItem('jimbo-tab'); return v === 'bot' || v === 'operacion' ? v : 'plan'; } catch(e) { return 'plan'; } })(), false);
 let rt, lastW = innerWidth; addEventListener('resize', () => { if (innerWidth === lastW) return; lastW = innerWidth; clearTimeout(rt); rt = setTimeout(renderAll, 120); });
 </script>
 <script>
