@@ -478,6 +478,96 @@ section.v11{padding-top:72px}
 .fstep.end{border-color:var(--gold)}.fstep.end b{color:var(--gold)}
 .warnbox{margin-top:16px;border:1px solid rgba(251,191,36,.45);background:rgba(251,191,36,.06);border-radius:14px;padding:14px 18px;color:#E4E4E7;font-size:15px;max-width:90ch}
 .nlist{margin:10px 0 0;padding-left:20px;color:#D4D4D8;max-width:86ch}.nlist li+li{margin-top:8px}
+/* ---------- v11: tablero 2026 (tres firmas, con y sin la regla) ---------- */
+.d26ctl{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:flex-end;margin:6px 0 14px}
+.d26ctl .lab{display:block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin-bottom:6px}
+.seg{display:inline-flex;flex-wrap:wrap;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:3px;gap:2px}
+.seg button{font:700 14px var(--font);color:var(--muted);background:transparent;border:0;border-radius:999px;padding:8px 14px;cursor:pointer;display:inline-flex;align-items:center;gap:7px;min-height:36px;white-space:nowrap}
+.seg button[aria-pressed="true"]{background:var(--ink);color:#000}
+.seg .sw{width:9px;height:9px;border-radius:3px;display:inline-block}
+.d26tiles{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
+@media (max-width:1200px){.d26tiles{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:640px){.d26tiles{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}}
+.d26tiles .tile .v{font-size:clamp(20px,2vw,28px)}
+.d26tiles .tile ul{list-style:none;margin:6px 0 0;padding:0;font-size:13px;color:var(--muted);line-height:1.6}
+.d26tiles .tile li .sw{width:8px;height:8px;border-radius:2px;display:inline-block;margin-right:6px}
+.d26chart{margin-top:12px}
+.d26chart h3{font-size:15px;margin:0 0 6px}
+.d26chart svg{display:block;width:100%;height:auto;overflow:visible}
+.d26leg{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;color:var(--muted);margin-top:8px}
+.d26leg i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.d26cmp{margin-top:14px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:640px){.d26cmp{grid-template-columns:1fr}}
+.d26cmp .tile.on{border-color:var(--gold)}
+/* ---------- v11: pasada de diseño (portada, pasos, vida) ---------- */
+.nband{position:relative;margin-top:22px;border:1px solid var(--line);border-radius:28px;overflow:hidden;background:
+  radial-gradient(900px 420px at 12% -10%,rgba(242,179,91,.20),transparent 60%),
+  radial-gradient(700px 380px at 95% 110%,rgba(74,222,128,.13),transparent 60%),
+  linear-gradient(180deg,#0E0F12,#08090B)}
+.nband::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(ellipse 80% 70% at 50% 30%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 30%,#000 30%,transparent 80%);pointer-events:none}
+.nband-in{position:relative;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:36px;align-items:center;padding:52px 48px}
+@media (max-width:1040px){.nband-in{grid-template-columns:1fr;padding:36px 22px;gap:26px}}
+.nband .nhero{padding:0;max-width:none}
+.nband .nhero h1{font-size:clamp(36px,5vw,72px)}
+.nfirms{display:flex;flex-wrap:wrap;gap:8px}
+.nfirm{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;border:1px solid var(--line2);background:rgba(255,255,255,.03);border-radius:999px;padding:7px 12px;color:#E4E4E7}
+.nfirm i{width:9px;height:9px;border-radius:3px}.nfirm small{font-weight:600;color:var(--muted);font-size:12px}
+.nctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+.ncurve{background:rgba(10,11,13,.72);border:1px solid var(--line2);border-radius:20px;padding:20px 20px 16px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);box-shadow:0 30px 80px -40px rgba(242,179,91,.45)}
+.ncurve .hd{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.ncurve .hd b{font-size:14px;color:var(--muted);font-weight:700}.ncurve .hd span{font-stretch:112%;font-weight:800;font-size:26px;color:var(--pos);font-variant-numeric:tabular-nums}
+.ncurve svg{display:block;width:100%;height:auto;margin-top:8px;overflow:visible}
+.ncurve .ln{stroke-dasharray:1400;stroke-dashoffset:1400;animation:ndraw 2.2s .25s cubic-bezier(.2,.7,.2,1) forwards}
+.ncurve .ar{opacity:0;animation:nfade 1.2s 1.4s ease forwards}
+@keyframes ndraw{to{stroke-dashoffset:0}}@keyframes nfade{to{opacity:1}}
+.ncurve .ft{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px;border-top:1px solid var(--line);padding-top:12px}
+.ncurve .ft div{font-size:12px;color:var(--muted)}.ncurve .ft b{display:block;font-size:16px;color:var(--ink);font-variant-numeric:tabular-nums;font-stretch:108%}
+.ntiles{margin-top:16px}
+.ntile{position:relative;overflow:hidden;transition:transform .2s ease,border-color .2s ease}
+.ntile::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,var(--gold),rgba(242,179,91,0))}
+.ntile:hover{transform:translateY(-3px);border-color:var(--line2)}
+.ntile .ic{width:34px;height:34px;border-radius:10px;background:rgba(242,179,91,.12);display:flex;align-items:center;justify-content:center;margin-bottom:12px;color:var(--gold)}
+.ntile .ic svg{width:18px;height:18px}
+.lunes{margin-top:16px;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,2.1fr);gap:22px;align-items:center;border:1px solid rgba(242,179,91,.45);border-radius:var(--r);padding:22px 24px;background:linear-gradient(90deg,rgba(242,179,91,.10),rgba(242,179,91,.02))}
+@media (max-width:900px){.lunes{grid-template-columns:1fr}}
+.lunes h3{font-size:22px;font-stretch:112%;font-weight:800}.lunes p{margin:6px 0 0;color:var(--muted);font-size:15px}
+.lunes ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;counter-reset:lu}
+@media (max-width:900px){.lunes ol{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (max-width:480px){.lunes ol{grid-template-columns:1fr}}
+.lunes li{counter-increment:lu;background:rgba(8,9,11,.6);border:1px solid var(--line);border-radius:14px;padding:14px;font-size:14px;color:#D4D4D8}
+.lunes li::before{content:counter(lu);display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--gold);color:#000;font-weight:800;font-size:13px;margin-bottom:8px}
+.lunes li b{color:var(--ink);display:block;margin-bottom:2px}
+.v11 .kicker{color:var(--gold);display:inline-flex;align-items:center;gap:10px}
+.v11 .kicker::before{content:"";width:28px;height:2px;background:var(--gold);border-radius:2px}
+.stages3{counter-reset:stg;gap:26px}
+.stg{position:relative;counter-increment:stg;transition:transform .2s ease,border-color .2s ease}
+.stg:hover{transform:translateY(-3px);border-color:var(--line2)}
+.stg::before{content:counter(stg);position:absolute;right:20px;top:14px;font-stretch:118%;font-weight:800;font-size:54px;line-height:1;color:rgba(255,255,255,.06)}
+.stg:not(:last-child)::after{content:"→";position:absolute;right:-21px;top:50%;transform:translateY(-50%);color:var(--gold);font-weight:800;font-size:18px;z-index:2}
+@media (max-width:980px){.stg:not(:last-child)::after{content:"↓";right:auto;left:50%;top:auto;bottom:-23px;transform:translateX(-50%)}}
+.stg:last-child{border-color:rgba(242,179,91,.55);background:linear-gradient(180deg,rgba(242,179,91,.08),var(--surface) 55%)}
+.stg:last-child .big{color:var(--gold)}
+.stg dl{border-top:1px solid var(--line);padding-top:12px}
+.v11 tbody tr{transition:background .15s ease}
+.v11 tbody tr:nth-child(even) td{background:rgba(255,255,255,.015)}
+.v11 tbody tr:hover td{background:rgba(242,179,91,.06)}
+.v11 thead th{text-transform:uppercase;letter-spacing:.06em;font-size:11px}
+.funnel{gap:26px}
+.fstep{position:relative;transition:transform .2s ease}
+.fstep:hover{transform:translateY(-3px)}
+.fstep:not(:last-child)::after{content:"→";position:absolute;right:-21px;top:50%;transform:translateY(-50%);color:var(--gold);font-weight:800;font-size:18px}
+@media (max-width:900px){.funnel{gap:12px}.fstep:not(:last-child)::after{content:none}}
+.fstep .pr{height:5px;border-radius:999px;background:var(--surface2);margin-top:12px;overflow:hidden}
+.fstep .pr i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--gold),#FCD9A0)}
+.cum .b{background:linear-gradient(180deg,#6EE7A0,#22C55E);transform-origin:bottom;animation:ngrow .9s cubic-bezier(.2,.7,.2,1) both}
+.cum .b.n{background:linear-gradient(180deg,#F87171,#DC2626)}
+@keyframes ngrow{from{transform:scaleY(.02)}to{transform:scaleY(1)}}
+.warnbox{position:relative;padding-left:52px}
+.warnbox::before{content:"!";position:absolute;left:16px;top:14px;width:24px;height:24px;border-radius:50%;background:var(--warn);color:#000;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:14px}
+.d26tiles .tile{transition:transform .2s ease,border-color .2s ease}.d26tiles .tile:hover{transform:translateY(-3px);border-color:var(--line2)}
+.d26tiles .tile:first-child{border-color:rgba(74,222,128,.45);background:linear-gradient(180deg,rgba(74,222,128,.08),var(--surface) 60%)}
+.rv{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.ncurve .ln{animation:none;stroke-dashoffset:0}.ncurve .ar{animation:none;opacity:1}.cum .b{animation:none}.ntile,.stg,.fstep,.d26tiles .tile{transition:none}}
 /* ---------- v11: pestaña Reglas (reglas vigentes por departamento) ---------- */
 body[data-tab="operacion"] #inicio, body[data-tab="operacion"] main > *:not(#operacion), body[data-tab="operacion"] #links, body[data-tab="operacion"] .picker, body[data-tab="operacion"] .menu-btn{display:none!important}
 body:not([data-tab="operacion"]) #operacion{display:none}
@@ -582,16 +672,36 @@ body[data-tab="operacion"] #operacion{padding-top:28px}
 </header>
 
 <main class="wrap">
-  <div class="v11 nhero" id="p-inicio">
-    <span class="npill"><i></i>Versión 11 · 13-nov-2026 · plan de trabajo vigente</span>
-    <h1 class="display">Topstep primero.<br><span class="gold">Después FTMO y Lucid.</span></h1>
-    <p class="sub">Una estrategia (Jimbo 15/1) operada por un bot. El lunes 16 de noviembre de 2026 arranca en Topstep 50K. Con el primer cobro se abren FTMO y Lucid, para no depender de una sola firma. Las reglas de cada departamento están en la pestaña <a href="#operacion" data-go="operacion" style="color:var(--gold)">Reglas</a>.</p>
+  <div class="v11 nband">
+    <div class="nband-in">
+      <div class="nhero" id="p-inicio">
+        <span class="npill"><i></i>Versión 11 · 13-nov-2026 · plan de trabajo vigente</span>
+        <h1 class="display">Topstep primero.<br><span class="gold">Después FTMO y Lucid.</span></h1>
+        <p class="sub">Una estrategia, Jimbo 15/1, operada por un bot. Arranca el lunes 16 de noviembre de 2026 en Topstep 50K. Con el primer cobro se abren FTMO y Lucid, para no depender de una sola firma.</p>
+        <div class="nfirms"><span class="nfirm"><i style="background:#60A5FA"></i>Topstep 50K <small>arranca el 16-nov</small></span><span class="nfirm"><i style="background:#2DD4BF"></i>FTMO Pro 50K <small>con el primer cobro</small></span><span class="nfirm"><i style="background:#A78BFA"></i>Lucid Flex 50K <small>con el primer cobro</small></span></div>
+        <div class="nctas"><a class="btn btn-primary" href="#operacion" data-go="operacion">Ver las reglas <span class="arrow">→</span></a><a class="btn btn-ghost" href="#p-2026" data-go="p-2026">Cómo habría ido 2026</a></div>
+      </div>
+      <div class="ncurve">
+        <div class="hd"><b>Topstep · acumulado del año típico</b><span>+$52,100</span></div>
+        <svg viewBox="0 0 520 230" role="img" aria-label="Acumulado típico de Topstep en 12 meses: en rojo los tres primeros meses y +$52,100 al mes 12"><defs><linearGradient id="ncg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4ADE80" stop-opacity=".35"/><stop offset="1" stop-color="#4ADE80" stop-opacity="0"/></linearGradient></defs><line x1="8" x2="512" y1="191.3" y2="191.3" stroke="#3F3F46" stroke-dasharray="4 5"/><polygon class="ar" points="8.0,191.3 8.0,194.3 53.8,196.6 99.6,194.0 145.5,169.8 191.3,158.4 237.1,152.4 282.9,143.5 328.7,120.4 374.5,104.2 420.4,69.7 466.2,65.3 512.0,26.4 512.0,191.3" fill="url(#ncg)"/><polyline class="ln" points="8.0,194.3 53.8,196.6 99.6,194.0 145.5,169.8 191.3,158.4 237.1,152.4 282.9,143.5 328.7,120.4 374.5,104.2 420.4,69.7 466.2,65.3 512.0,26.4" fill="none" stroke="#4ADE80" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><circle class="ar" cx="512.0" cy="26.4" r="6" fill="#4ADE80"/><circle class="ar" cx="512.0" cy="26.4" r="12" fill="#4ADE80" opacity=".18"/><text x="8.0" y="224" text-anchor="middle" font-size="11" fill="#71717A">1</text><text x="99.6" y="224" text-anchor="middle" font-size="11" fill="#71717A">3</text><text x="237.1" y="224" text-anchor="middle" font-size="11" fill="#71717A">6</text><text x="374.5" y="224" text-anchor="middle" font-size="11" fill="#71717A">9</text><text x="512.0" y="224" text-anchor="middle" font-size="11" fill="#71717A">12</text></svg>
+        <div class="ft"><div><b>−$1,650</b>lo más bajo, mes 2</div><div><b>Mes 4</b>pasa a positivo</div><div><b>Semana 12</b>primer cobro</div></div>
+      </div>
+    </div>
   </div>
   <div class="v11 ntiles">
-    <div class="ntile"><div class="v gold">+$52,100</div><div class="k">Topstep en 12 meses, año típico</div><div class="s">Con lo que arranca el lunes. Año bueno $78,400 · año malo $19,800</div></div>
-    <div class="ntile"><div class="v">Semana 12</div><div class="k">Primer cobro en la mano</div><div class="s">Principios de febrero de 2027. Pronto: semana 6. Tarde: semana 25</div></div>
-    <div class="ntile"><div class="v">$2,700</div><div class="k">De tu bolsillo, caso típico</div><div class="s">Antes de que los cobros paguen el resto. El peor caso medido: $8,700</div></div>
-    <div class="ntile"><div class="v">38 de 100</div><div class="k">Evaluaciones que aprueban</div><div class="s">De las fondeadas, 35 de cada 100 llegan a cobrar</div></div>
+    <div class="ntile"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></div><div class="v gold">+$52,100</div><div class="k">Topstep en 12 meses, año típico</div><div class="s">Con lo que arranca el lunes. Año bueno $78,400 · año malo $19,800</div></div>
+    <div class="ntile"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div><div class="v">Semana 12</div><div class="k">Primer cobro en la mano</div><div class="s">Principios de febrero de 2027. Pronto: semana 6. Tarde: semana 25</div></div>
+    <div class="ntile"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 012-2h13v4"/><path d="M3 7v10a2 2 0 002 2h15V9H5a2 2 0 01-2-2z"/><path d="M16 14h.01"/></svg></div><div class="v">$2,700</div><div class="k">De tu bolsillo, caso típico</div><div class="s">Antes de que los cobros paguen el resto. El peor caso medido: $8,700</div></div>
+    <div class="ntile"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></div><div class="v">38 de 100</div><div class="k">Evaluaciones que aprueban</div><div class="s">De las fondeadas, 35 de cada 100 llegan a cobrar</div></div>
+  </div>
+  <div class="v11 lunes">
+    <div><h3>Qué toca el lunes 16-nov</h3><p>Solo arranca la evaluación A. Las demás entran una por semana.</p></div>
+    <ol>
+      <li><b>Comprar la evaluación A</b>Topstep 50K, $85.</li>
+      <li><b>Cargarla en el panel</b>Fecha de compra y saldo inicial.</li>
+      <li><b>Revisar el tamaño</b>El que calcula el bot, antes de la apertura.</li>
+      <li><b>Armar el bot</b>Antes de las 9:20, hora de Nueva York.</li>
+    </ol>
   </div>
 
   <section class="v11" id="p-etapas" aria-labelledby="h-etapas">
@@ -693,10 +803,10 @@ body[data-tab="operacion"] #operacion{padding-top:28px}
       <p>Todas las cuentas copian el mismo trade. En evaluación cada trade gana $1,580 o pierde $988, y gana 42 de cada 100 veces. Esto es lo que sale, en promedio, de 32 evaluaciones.</p>
     </div>
     <div class="funnel">
-      <div class="fstep"><b>32</b><span>evaluaciones compradas ($2,720)</span></div>
-      <div class="fstep"><b>12</b><span>aprueban. Las otras 20 se queman</span></div>
-      <div class="fstep"><b>11</b><span>fondeadas activadas</span></div>
-      <div class="fstep"><b>4</b><span>fondeadas que cobran al menos una vez</span></div>
+      <div class="fstep"><b>32</b><span>evaluaciones compradas ($2,720)</span><div class="pr"><i style="width:100%"></i></div></div>
+      <div class="fstep"><b>12</b><span>aprueban. Las otras 20 se queman</span><div class="pr"><i style="width:38%"></i></div></div>
+      <div class="fstep"><b>11</b><span>fondeadas activadas</span><div class="pr"><i style="width:34%"></i></div></div>
+      <div class="fstep"><b>4</b><span>fondeadas que cobran al menos una vez</span><div class="pr"><i style="width:12%"></i></div></div>
       <div class="fstep end"><b>$19,000</b><span>en unos 7 cobros a lo largo de su vida</span></div>
     </div>
     <div class="tbl-wrap"><table>
@@ -719,27 +829,23 @@ body[data-tab="operacion"] #operacion{padding-top:28px}
     <div class="sec-head">
       <span class="kicker">2026</span>
       <h2 class="display" id="h-2026n">Cómo habría ido <span class="gold">este año</span></h2>
-      <p>Las tres firmas con Jimbo + Empuje, del 2 de enero al 12 de noviembre de 2026, con y sin la regla de señales flojas. FTMO y Lucid abren el 25 de febrero, con el primer cobro de Topstep. Cada mes es lo que entró al banco menos lo gastado en evaluaciones.</p>
+      <p>Las tres firmas con Jimbo + Empuje y la regla de señales flojas (en FTMO, Jimbo solo con la regla), del 2 de enero al 12 de noviembre de 2026. FTMO y Lucid abren el 25 de febrero, con el primer cobro de Topstep. Cada mes es lo que entró al banco menos lo pagado a las firmas.</p>
     </div>
-    <div class="tbl-wrap"><table>
-      <thead><tr><th>Mes</th><th class="num">Topstep</th><th class="num">FTMO</th><th class="num">Lucid</th><th class="num">Total con la regla</th><th class="num">Total sin la regla</th></tr></thead>
-      <tbody>
-        <tr><td>Enero</td><td class="num neg">−$700</td><td class="num"></td><td class="num"></td><td class="num neg">−$700</td><td class="num neg">−$700</td></tr>
-        <tr><td>Febrero</td><td class="num pos">+$2,200</td><td class="num neg">−$100</td><td class="num neg">−$300</td><td class="num pos">+$1,700</td><td class="num pos">+$200</td></tr>
-        <tr><td>Marzo</td><td class="num pos">+$5,900</td><td class="num neg">−$800</td><td class="num neg">−$1,300</td><td class="num pos">+$3,800</td><td class="num pos">+$3,000</td></tr>
-        <tr><td>Abril</td><td class="num pos">+$12,900</td><td class="num pos">+$13,400</td><td class="num pos">+$6,900</td><td class="num pos">+$33,100</td><td class="num pos">+$33,100</td></tr>
-        <tr><td>Mayo</td><td class="num pos">+$18,800</td><td class="num pos">+$4,500</td><td class="num pos">+$1,800</td><td class="num pos">+$25,100</td><td class="num pos">+$25,100</td></tr>
-        <tr><td>Junio</td><td class="num neg">−$1,700</td><td class="num pos">+$9,000</td><td class="num pos">+$9,000</td><td class="num pos">+$16,300</td><td class="num pos">+$18,000</td></tr>
-        <tr><td>Julio</td><td class="num pos">+$15,600</td><td class="num pos">+$27,000</td><td class="num pos">+$16,200</td><td class="num pos">+$58,800</td><td class="num pos">+$29,200</td></tr>
-        <tr><td>Agosto</td><td class="num pos">+$26,500</td><td class="num pos">+$13,500</td><td class="num pos">+$8,400</td><td class="num pos">+$48,300</td><td class="num pos">+$23,500</td></tr>
-        <tr><td>Septiembre</td><td class="num neg">−$700</td><td class="num">$0</td><td class="num pos">+$500</td><td class="num neg">−$200</td><td class="num neg">−$3,500</td></tr>
-        <tr><td>Octubre</td><td class="num pos">+$8,900</td><td class="num pos">+$12,700</td><td class="num pos">+$2,900</td><td class="num pos">+$24,400</td><td class="num pos">+$33,100</td></tr>
-        <tr><td>Noviembre (12 días)</td><td class="num">$0</td><td class="num">$0</td><td class="num pos">+$4,900</td><td class="num pos">+$4,900</td><td class="num pos">+$5,100</td></tr>
-        <tr class="tot hi"><td>Total</td><td class="num pos">+$87,700</td><td class="num pos">+$79,100</td><td class="num pos">+$48,900</td><td class="num pos">+$215,700</td><td class="num pos">+$166,100</td></tr>
-      </tbody>
-    </table></div>
-    <p class="opnote">Las columnas de cada firma son con la regla. Los meses en $0 o en negativo no son meses sin operar: son meses en que ninguna cuenta completó los días para cobrar. Septiembre fue malo de verdad en Topstep, con 9 fondeadas quemadas. Al 12 de noviembre las 5 fondeadas de Topstep tenían adentro unos $11,100 sin retirar.</p>
-    <div class="warnbox"><b>2026 es un año bueno y es el que más favorece a la regla.</b> Además está dentro de los datos con que se armó. Sirve para ver cómo se mueve el dinero mes a mes, no como pronóstico. Para planificar, usa los números de 12 meses de las secciones de arriba.</div>
+    <div class="warnbox" style="margin:0 0 18px"><b>2026 es un año bueno y es el que más favorece a la regla.</b> Además está dentro de los datos con que se armó. Sirve para ver cómo se mueve el dinero mes a mes, no como pronóstico. Para planificar, usa los números de 12 meses de las secciones de arriba.</div>
+    <div class="d26ctl">
+      <div><span class="lab">Firmas (una o todas)</span><div class="seg" id="d26Firm" role="group" aria-label="Firmas"></div></div>
+    </div>
+    <div class="d26tiles" id="d26Tiles"></div>
+    <div class="card d26chart">
+      <h3>Neto por mes</h3>
+      <div id="d26Bars"></div>
+      <h3 style="margin-top:18px">Neto acumulado</h3>
+      <div id="d26Line"></div>
+      <div class="d26leg"><span><i style="background:var(--pos)"></i>Mes con ganancia</span><span><i style="background:var(--neg)"></i>Mes con pérdida</span><span><i style="background:var(--gold)"></i>Neto acumulado</span></div>
+    </div>
+    <h3 class="subsec">Detalle mensual</h3>
+    <div class="tbl-wrap"><table id="d26Table"></table></div>
+    <p class="opnote">Los meses en $0 o en negativo no son meses sin operar: son meses en que ninguna cuenta completó los días para cobrar, o en que solo se pagaron evaluaciones. "Saldo sin retirar" es la ganancia que quedaba dentro de las fondeadas vivas el 12 de noviembre.</p>
   </section>
 
   <section class="v11" id="p-riesgos" aria-labelledby="h-rsg">
@@ -1931,6 +2037,95 @@ if (typeof module !== 'undefined') module.exports = Motor;
   render();
 })();
 
+</script>
+
+<script>
+/* v11: tablero 2026 — tres firmas, con y sin la regla. Datos generados por investigacion/respaldo/ruta2026f.js y ruta2026f_firmas.py */
+(function(){
+  var W = {"Topstep":{"con":{"months":[{"m":"2026-01","net":-695,"recv":0,"cost":695,"evals":8,"pass":3,"fnew":3,"fburn":1,"fmax":0,"pay":0},{"m":"2026-02","net":2205,"recv":3580,"cost":1375,"evals":16,"pass":0,"fnew":0,"fburn":0,"fmax":0,"pay":2},{"m":"2026-03","net":5909,"recv":7624,"cost":1715,"evals":20,"pass":0,"fnew":0,"fburn":2,"fmax":0,"pay":2},{"m":"2026-04","net":12898,"recv":13608,"cost":710,"evals":8,"pass":8,"fnew":5,"fburn":0,"fmax":0,"pay":4},{"m":"2026-05","net":18760,"recv":19115,"cost":355,"evals":4,"pass":0,"fnew":3,"fburn":4,"fmax":0,"pay":5},{"m":"2026-06","net":-1715,"recv":0,"cost":1715,"evals":20,"pass":4,"fnew":4,"fburn":4,"fmax":0,"pay":0},{"m":"2026-07","net":15645,"recv":16000,"cost":355,"evals":4,"pass":4,"fnew":1,"fburn":0,"fmax":0,"pay":4},{"m":"2026-08","net":26459,"recv":26474,"cost":15,"evals":0,"pass":0,"fnew":0,"fburn":0,"fmax":0,"pay":10},{"m":"2026-09","net":-695,"recv":0,"cost":695,"evals":8,"pass":4,"fnew":6,"fburn":9,"fmax":0,"pay":0},{"m":"2026-10","net":8918,"recv":9273,"cost":355,"evals":4,"pass":8,"fnew":7,"fburn":4,"fmax":0,"pay":3},{"m":"2026-11","net":0,"recv":0,"cost":0,"evals":0,"pass":0,"fnew":2,"fburn":2,"fmax":0,"pay":0}],"alive":5,"bal":11119,"evalsAlive":0}},"FTMO":{"con":{"months":[{"m":"2026-02","net":-139,"recv":0,"cost":139,"evals":1,"pass":0,"fnew":0,"fburn":0,"fmax":0,"pay":0},{"m":"2026-03","net":-834,"recv":0,"cost":834,"evals":6,"pass":0,"fnew":0,"fburn":0,"fmax":0,"pay":0},{"m":"2026-04","net":13361,"recv":13500,"cost":139,"evals":1,"pass":4,"fnew":3,"fburn":0,"fmax":0,"pay":3},{"m":"2026-05","net":4500,"recv":4500,"cost":0,"evals":0,"pass":0,"fnew":0,"fburn":0,"fmax":0,"pay":1},{"m":"2026-06","net":9000,"recv":9000,"cost":0,"evals":0,"pass":0,"fnew":1,"fburn":1,"fmax":0,"pay":2},{"m":"2026-07","net":27000,"recv":27000,"cost":0,"evals":0,"pass":0,"fnew":0,"fburn":0,"fmax":0,"pay":6},{"m":"2026-08","net":13500,"recv":13500,"cost":0,"evals":0,"pass":0,"fnew":0,"fburn":0,"fmax":0,"pay":3},{"m":"2026-09","net":0,"recv":0,"cost":0,"evals":0,"pass":0,"fnew":0,"fburn":0,"fmax":0,"pay":0},{"m":"2026-10","net":12664,"recv":12664,"cost":0,"evals":0,"pass":0,"fnew":0,"fburn":0,"fmax":0,"pay":3},{"m":"2026-11","net":0,"recv":0,"cost":0,"evals":0,"pass":0,"fnew":0,"fburn":0,"fmax":0,"pay":0}],"alive":3,"bal":10685,"evalsAlive":0,"pend":0}},"Lucid":{"con":{"months":[{"m":"2026-02","net":-322,"recv":0,"cost":322,"evals":4,"pass":0,"fnew":0,"fburn":0,"fmax":0,"pay":0},{"m":"2026-03","net":-1288,"recv":0,"cost":1288,"evals":16,"pass":0,"fnew":0,"fburn":0,"fmax":0,"pay":0},{"m":"2026-04","net":6878,"recv":7200,"cost":322,"evals":4,"pass":8,"fnew":5,"fburn":0,"fmax":0,"pay":4},{"m":"2026-05","net":1800,"recv":1800,"cost":0,"evals":0,"pass":0,"fnew":0,"fburn":0,"fmax":0,"pay":1},{"m":"2026-06","net":9000,"recv":9000,"cost":0,"evals":0,"pass":0,"fnew":0,"fburn":0,"fmax":0,"pay":5},{"m":"2026-07","net":16200,"recv":16200,"cost":0,"evals":0,"pass":0,"fnew":0,"fburn":0,"fmax":0,"pay":9},{"m":"2026-08","net":8356,"recv":9000,"cost":644,"evals":8,"pass":0,"fnew":3,"fburn":0,"fmax":4,"pay":5},{"m":"2026-09","net":512,"recv":1800,"cost":1288,"evals":16,"pass":4,"fnew":4,"fburn":3,"fmax":1,"pay":1},{"m":"2026-10","net":2863,"recv":3185,"cost":322,"evals":4,"pass":8,"fnew":5,"fburn":4,"fmax":0,"pay":4},{"m":"2026-11","net":4936,"recv":4936,"cost":0,"evals":0,"pass":0,"fnew":0,"fburn":1,"fmax":0,"pay":4}],"alive":4,"bal":1785,"evalsAlive":0,"pend":0}}};
+  var FIRMS = [['Topstep','Topstep 50K','#60A5FA'],['FTMO','FTMO Pro 50K','#2DD4BF'],['Lucid','Lucid Flex 50K','#A78BFA']];
+  var MS = ['2026-01','2026-02','2026-03','2026-04','2026-05','2026-06','2026-07','2026-08','2026-09','2026-10','2026-11'];
+  var MN = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov'], MNL = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre (12 días)'];
+  var KEYS = ['net','recv','cost','evals','pass','fnew','fburn','fmax','pay'];
+  var st = {firm: 'all', regla: 'con'};
+  var el = function(id){ return document.getElementById(id); };
+  var usd = function(v){ return '$' + Math.round(Math.abs(v)).toLocaleString('en-US'); };
+  var sg = function(v){ return (v < 0 ? '−' : v > 0 ? '+' : '') + usd(v); };
+  var kk = function(v){ return (v < 0 ? '−' : '+') + '$' + (Math.abs(v) / 1000).toFixed(1) + 'k'; };
+  var cls = function(v){ return v < 0 ? 'neg' : v > 0 ? 'pos' : ''; };
+  function sel(){ return FIRMS.filter(function(f){ return st.firm === 'all' || st.firm === f[0]; }); }
+  function mes(regla, firmas){
+    return MS.map(function(m){
+      var o = {m: m, by: {}}; KEYS.forEach(function(k){ o[k] = 0; });
+      firmas.forEach(function(f){ var r = W[f[0]][regla].months.filter(function(x){ return x.m === m; })[0]; o.by[f[0]] = r ? r.net : null; if (r) KEYS.forEach(function(k){ o[k] += r[k] || 0; }); });
+      return o; });
+  }
+  function tot(M){ var t = {}; KEYS.forEach(function(k){ t[k] = M.reduce(function(a, o){ return a + o[k]; }, 0); }); return t; }
+  function tile(k, v, s, c){ return '<div class="tile"><div class="k">' + k + '</div><div class="v ' + (c || '') + '">' + v + '</div><div class="s">' + s + '</div></div>'; }
+  function bars(M){
+    var Wd = 1100, Hh = 300, padL = 64, padR = 12, top = 26, bot = 34, vals = M.map(function(o){ return o.net; });
+    var mx = Math.max.apply(null, vals.concat([1])), mn = Math.min.apply(null, vals.concat([0])); var step = mx > 40000 ? 20000 : mx > 16000 ? 10000 : 5000; var hi = Math.ceil(mx / step) * step, lo = mn < 0 ? -Math.max(-mn * 2.2, hi * 0.07) : 0;
+    var y = function(v){ return top + (hi - v) / (hi - lo) * (Hh - top - bot); }, bw = (Wd - padL - padR) / M.length, g = '';
+    for (var t = 0; t <= hi + 1; t += step) g += '<line x1="' + padL + '" x2="' + (Wd - padR) + '" y1="' + y(t) + '" y2="' + y(t) + '" stroke="' + (t === 0 ? '#52525B' : '#27272A') + '" stroke-width="1"/><text x="' + (padL - 8) + '" y="' + (y(t) + 4) + '" text-anchor="end" font-size="12" fill="#A1A1AA">' + (t === 0 ? '$0' : (t < 0 ? '−' : '') + '$' + Math.abs(t / 1000) + 'k') + '</text>';
+    M.forEach(function(o, i){ var x = padL + i * bw + bw * 0.2, w = bw * 0.6, y0 = y(0), y1 = y(o.net), h = Math.max(Math.abs(y1 - y0), o.net === 0 ? 0 : 2);
+      g += '<rect x="' + x + '" y="' + Math.min(y0, y1) + '" width="' + w + '" height="' + h + '" rx="4" fill="' + (o.net < 0 ? '#F87171' : '#4ADE80') + '"><title>' + MNL[i] + ': ' + sg(o.net) + '</title></rect>';
+      g += '<text x="' + (x + w / 2) + '" y="' + (o.net < 0 ? Math.max(y0, y1) + 15 : Math.min(y0, y1) - 6) + '" text-anchor="middle" font-size="12" font-weight="700" fill="' + (o.net < 0 ? '#F87171' : '#FAFAFA') + '">' + (o.net === 0 ? '$0' : kk(o.net)) + '</text>';
+      g += '<text x="' + (x + w / 2) + '" y="' + (Hh - 8) + '" text-anchor="middle" font-size="13" fill="#A1A1AA">' + MN[i] + '</text>'; });
+    return '<svg viewBox="0 0 ' + Wd + ' ' + Hh + '" role="img" aria-label="Neto por mes">' + g + '</svg>';
+  }
+  function line(M){
+    var Wd = 1100, Hh = 220, padL = 64, padR = 70, top = 22, bot = 30, acc = [], a = 0; M.forEach(function(o){ a += o.net; acc.push(a); });
+    var mx = Math.max.apply(null, acc.concat([1])), mn = Math.min.apply(null, acc.concat([0])); var step = mx > 150000 ? 100000 : mx > 60000 ? 50000 : 20000; var hi = Math.ceil(mx / step) * step, lo = mn < 0 ? -step / 2 : 0;
+    var y = function(v){ return top + (hi - v) / (hi - lo) * (Hh - top - bot); }, bw = (Wd - padL - padR) / M.length, xs = acc.map(function(_, i){ return padL + i * bw + bw / 2; }), g = '';
+    for (var t = 0; t <= hi + 1; t += step) g += '<line x1="' + padL + '" x2="' + (Wd - padR) + '" y1="' + y(t) + '" y2="' + y(t) + '" stroke="' + (t === 0 ? '#52525B' : '#27272A') + '"/><text x="' + (padL - 8) + '" y="' + (y(t) + 4) + '" text-anchor="end" font-size="12" fill="#A1A1AA">$' + (t / 1000) + 'k</text>';
+    var pts = acc.map(function(v, i){ return xs[i] + ',' + y(v); }).join(' ');
+    g += '<polygon points="' + xs[0] + ',' + y(0) + ' ' + pts + ' ' + xs[xs.length - 1] + ',' + y(0) + '" fill="rgba(242,179,91,.12)"/><polyline points="' + pts + '" fill="none" stroke="#F2B35B" stroke-width="2.5" stroke-linejoin="round"/>';
+    acc.forEach(function(v, i){ g += '<circle cx="' + xs[i] + '" cy="' + y(v) + '" r="' + (i === acc.length - 1 ? 5 : 3) + '" fill="#F2B35B"><title>' + MNL[i] + ': ' + sg(v) + ' acumulado</title></circle><text x="' + xs[i] + '" y="' + (Hh - 8) + '" text-anchor="middle" font-size="13" fill="#A1A1AA">' + MN[i] + '</text>'; });
+    var L = acc.length - 1; g += '<text x="' + (xs[L] + 10) + '" y="' + (y(acc[L]) + 4) + '" font-size="14" font-weight="800" fill="#F2B35B">' + kk(acc[L]) + '</text>';
+    return '<svg viewBox="0 0 ' + Wd + ' ' + Hh + '" role="img" aria-label="Neto acumulado">' + g + '</svg>';
+  }
+  function render(){
+    var fs = sel(), M = mes(st.regla, fs), T = tot(M), acc = [], a = 0; M.forEach(function(o){ a += o.net; acc.push(a); });
+    var vivas = fs.reduce(function(t, f){ return t + W[f[0]][st.regla].alive; }, 0), saldo = fs.reduce(function(t, f){ return t + W[f[0]][st.regla].bal; }, 0);
+    var act = M.filter(function(o){ return fs.some(function(f){ return o.by[f[0]] !== null; }); }), best = act.reduce(function(b, o){ return o.net > b.net ? o : b; }), worst = act.reduce(function(b, o){ return o.net < b.net ? o : b; });
+    var first = M.filter(function(o){ return o.recv > 0; })[0], lowest = Math.min.apply(null, acc.concat([0])), gan = act.filter(function(o){ return o.net > 0; }).length;
+    var nombre = fs.length === 3 ? 'Las tres firmas' : fs[0][1];
+    el('d26Tiles').innerHTML =
+      tile('Neto (cobros − pagado a las firmas)', sg(T.net), nombre + ' · 2-ene a 12-nov', cls(T.net)) +
+      '<div class="tile"><div class="k">Cobros recibidos</div><div class="v">' + usd(T.recv) + '</div><ul>' + fs.map(function(f){ var r = W[f[0]][st.regla].months.reduce(function(t, m){ return t + m.recv; }, 0); return '<li><span class="sw" style="background:' + f[2] + '"></span>' + f[1] + ': ' + usd(r) + '</li>'; }).join('') + '</ul></div>' +
+      tile('Pagado a las firmas', usd(T.cost), T.evals + ' evaluaciones compradas') +
+      tile('Fondeadas vivas al 12-nov', String(vivas), 'Saldo sin retirar: ' + usd(saldo)) +
+      tile('Retorno sobre lo pagado', (T.recv / Math.max(T.cost, 1)).toFixed(1) + '×', 'Por cada $1 pagado a las firmas entraron $' + (T.recv / Math.max(T.cost, 1)).toFixed(2)) +
+      tile('Cobros (payouts)', String(T.pay), 'Promedio por cobro: ' + usd(T.recv / Math.max(T.pay, 1))) +
+      tile('Evaluaciones aprobadas', Math.round(100 * T.pass / Math.max(T.evals, 1)) + '%', T.pass + ' de ' + T.evals + ' aprobaron') +
+      tile('Fondeadas', T.fnew + ' nuevas', T.fburn + ' quemadas' + (T.fmax ? ' · ' + T.fmax + ' cerradas al llegar al máximo de cobros' : '')) +
+      tile('Mejor mes', sg(best.net), MNL[MS.indexOf(best.m)], 'pos') +
+      tile('Peor mes', sg(worst.net), MNL[MS.indexOf(worst.m)], cls(worst.net)) +
+      tile('Meses con ganancia', gan + ' de ' + act.length, Math.round(100 * gan / act.length) + '% de los meses') +
+      tile('Lo más que bajó', lowest < 0 ? sg(lowest) : '$0', 'Primer cobro: ' + (first ? MNL[MS.indexOf(first.m)] : 'ninguno'), lowest < 0 ? 'neg' : '');
+    el('d26Bars').innerHTML = bars(M); el('d26Line').innerHTML = line(M);
+    var A = mes(st.regla, FIRMS), h = '<thead><tr><th>Mes</th>' + FIRMS.map(function(f){ return '<th class="num">' + f[1] + '</th>'; }).join('') + '<th class="num">Total</th><th class="num">Evaluaciones compradas</th><th class="num">Fondeadas quemadas</th><th class="num">Cobros</th></tr></thead><tbody>';
+    A.forEach(function(o, i){ h += '<tr><td>' + MNL[i] + '</td>' + FIRMS.map(function(f){ var v = o.by[f[0]]; return '<td class="num ' + (v === null ? '' : cls(v)) + '">' + (v === null ? '' : v === 0 ? '$0' : sg(v)) + '</td>'; }).join('') + '<td class="num ' + cls(o.net) + '">' + (o.net === 0 ? '$0' : sg(o.net)) + '</td><td class="num">' + o.evals + '</td><td class="num">' + o.fburn + '</td><td class="num">' + o.pay + '</td></tr>'; });
+    var TA = tot(A); h += '<tr class="tot hi"><td>Total</td>' + FIRMS.map(function(f){ var v = W[f[0]][st.regla].months.reduce(function(t, m){ return t + m.net; }, 0); return '<td class="num ' + cls(v) + '">' + sg(v) + '</td>'; }).join('') + '<td class="num ' + cls(TA.net) + '">' + sg(TA.net) + '</td><td class="num">' + TA.evals + '</td><td class="num">' + TA.fburn + '</td><td class="num">' + TA.pay + '</td></tr></tbody>';
+    el('d26Table').innerHTML = h;
+    [].forEach.call(document.querySelectorAll('#d26Firm button'), function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-f') === st.firm); });
+  }
+  el('d26Firm').innerHTML = '<button type="button" data-f="all" aria-pressed="true">Todas</button>' + FIRMS.map(function(f){ return '<button type="button" data-f="' + f[0] + '" aria-pressed="false"><span class="sw" style="background:' + f[2] + '"></span>' + f[1] + '</button>'; }).join('');
+  el('d26Firm').addEventListener('click', function(e){ var b = e.target.closest('button'); if (b){ st.firm = b.getAttribute('data-f'); render(); } });
+  render();
+})();
+</script>
+
+<script>
+/* v11: aparición suave al hacer scroll. La clase se agrega por script: sin script el contenido se ve igual. */
+(function(){
+  if (!('IntersectionObserver' in window) || (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+  var els = document.querySelectorAll('.v11 .sec-head, .v11 .card, .v11 .tbl-wrap, .ntile, .fstep, .lunes, .d26tiles .tile, #operacion .card, #operacion .flag');
+  var io = new IntersectionObserver(function(es){ es.forEach(function(en){ if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } }); }, {rootMargin: '0px 0px -8% 0px'});
+  [].forEach.call(els, function(e, i){ e.classList.add('rv'); e.style.transitionDelay = (i % 4) * 60 + 'ms'; io.observe(e); });
+  setTimeout(function(){ [].forEach.call(document.querySelectorAll('.rv:not(.in)'), function(e){ var r = e.getBoundingClientRect(); if (r.top < innerHeight) e.classList.add('in'); }); }, 1200);
+  document.addEventListener('click', function(){ setTimeout(function(){ [].forEach.call(document.querySelectorAll('.rv:not(.in)'), function(e){ var r = e.getBoundingClientRect(); if (r.width && r.top < innerHeight) e.classList.add('in'); }); }, 60); });
+})();
 </script>
 </body>
 </html>
